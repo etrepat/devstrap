@@ -2,8 +2,13 @@
 
 CONFIG="~/.bashrc"
 
-x() { $* || (echo "uops! something failed" 1>&2 && exit 1) }
-i() { x sudo apt-get install -y $* }
+x() {
+  $* || (echo "uops! something failed" 1>&2 && exit 1)
+}
+
+i() {
+  x sudo apt-get install -y $*
+}
 
 echo "Updating system ..."
 x sudo apt-get update -y
