@@ -15,7 +15,7 @@ x sudo apt-get update -y
 x sudo apt-get upgrade -y
 
 echo "Generating SSH pub/priv keys if not present ..."
-[[ -f ~/.ssh/id_rsa.pub ]] || ssh-keygen -t rsa
+test ! -s ~/.ssh/id_rsa.pub && x ssh-keygen -q -t rsa
 
 echo "Installing needed compilers & build tools ..."
 i build-essential
