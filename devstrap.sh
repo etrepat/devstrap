@@ -15,7 +15,7 @@ x sudo apt-get update -y
 x sudo apt-get upgrade -y
 
 echo "Generating SSH pub/priv keys if not present ..."
-[[ -f ~/.ssh/id_rsa.pub ]] || x ssh-keygen
+[[ -f ~/.ssh/id_rsa.pub ]] || ssh-keygen -t rsa
 
 echo "Installing needed compilers & build tools ..."
 i build-essential
@@ -78,8 +78,9 @@ x echo "# Prepend ~/bin to PATH" >> $CONFIG
 x echo "PATH=~/bin:$PATH" >> $CONFIG
 
 echo "Adding a minimal set of aliases (cannot work without these) ..."
-i xclip
 x echo "alias ls='ls -lFh --color=auto'" >> ~/.bash_aliases
 x echo "alias df='df -h'" >> ~/.bash_aliases
 x echo "alias pbcopy='xclip -selection cliboard'" >> ~/.bash_aliases
 x echo "alias pbpaste='xclip -selection clipboard -o'" >> ~/.bash_aliases
+
+echo "All done!"

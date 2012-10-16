@@ -1,6 +1,6 @@
 # DevStrap
 
-DevStrap is a simple script to rapidly set up a debian/ubuntu box for Ruby/Rails
+DevStrap is a simple script to rapidlyset up a debian/ubuntu box for Ruby/Rails
 development.
 
 ## Requirements
@@ -11,7 +11,7 @@ A recent fresh debian/ubuntu install.
 
 Run the script:
 
-    bash < <(curl -s https://raw.github.com/etrepat/devstrap/master/devstrap.sh)
+    bash < <(wget -qO- https://raw.github.com/etrepat/devstrap/master/devstrap.sh)
 
 ## What does it do?
 
