@@ -72,9 +72,10 @@ x sudo add-apt-repository ppa:webupd8team/sublime-text-2
 x sudo apt-get update
 i sublime-text
 
-echo "Prepending ~/bin to PATH ..."
+echo "Prepending ~/bin to PATH when exists ..."
 x echo "" >> $CONFIG
-x echo "# Prepend ~/bin to PATH" >> $CONFIG
+x echo "# Prepend ~/bin to PATH if it exists" >> $CONFIG
+x echo "test -d \"~/bin\" &&" >> $CONFIG
 x echo "PATH=~/bin:$PATH" >> $CONFIG
 
 echo "Adding a minimal set of aliases (cannot work without these) ..."
