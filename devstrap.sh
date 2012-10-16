@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-$CONFIG="~/.bashrc"
+CONFIG="~/.bashrc"
 
 x() { $* || (echo "uops! something failed" 1>&2 && exit 1) }
 i() { x sudo apt-get install -y $* }
