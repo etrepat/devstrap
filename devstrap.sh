@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CONFIG="~/.bashrc"
+CONFIG="$HOME/.bashrc"
 
 x() {
   $* || (echo "uops! something failed" 1>&2 && exit 1)
@@ -9,6 +9,9 @@ x() {
 i() {
   x sudo apt-get install -y $*
 }
+
+# Revoke previous sudo perms
+sudo -k
 
 echo "Updating system ..."
 x sudo apt-get update -y
@@ -54,6 +57,9 @@ x curl -L https://github.com/gma/bundler-exec/raw/master/bundler-exec.sh > ~/.bu
 x echo "" >> $CONFIG
 x echo "# bundler-exec (https://github.com/gma/bundler-exec)" >> $CONFIG
 x echo "[ -f ~/.bundler-exec.sh ] && source ~/.bundler-exec.sh" >> $CONFIG
+
+echo "Installing Heroku toolbelt ..."
+x wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
 echo "Installing xclip for easy commandline clipboard access ..."
 i xclip
