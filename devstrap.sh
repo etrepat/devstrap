@@ -24,7 +24,7 @@ echo 'Installing needed compilers & build tools ...'
 i build-essential
 
 echo 'Installing needed libraries and dependencies ...'
-i bison openssl libreadline6 libreadline6-dev zlib1g zlib1g-dev libssl-dev libyaml-dev libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool
+i bison openssl libreadline6 libreadline6-dev zlib1g zlib1g-dev libssl-dev libyaml-dev libxml2-dev libxslt1-dev autoconf libc6-dev libncurses5-dev automake libtool libgdm-dev libffi-dev
 
 echo 'Installing Curl ...'
 i curl
@@ -42,24 +42,27 @@ echo 'Installing Imagemagick client & devevelopment libraries ...'
 i imagemagick libmagickcore-dev libmagickwand-dev
 
 echo 'Installing latest RVM (Ruby Version Manager) ...'
-x curl -L https://get.rvm.io | bash -s stable
+x curl -#L https://get.rvm.io | bash -s stable --autolibs=enabled
 x echo '' >> $CONFIG
 x echo '# RVM' >> $CONFIG
 x echo '[[ -s ~/.rvm/scripts/rvm ]] && source ~/.rvm/scripts/rvm' >> $CONFIG
 x source ~/.rvm/scripts/rvm
 
 echo 'Installing latest stable patch-level ruby and marking as default ...'
-x rvm install 1.9.3-p194
-x rvm use 1.9.3-p194 --default
+x rvm install 2.0.0-p0
+x rvm use 2.0.0-p0 --default
 
 echo 'Installing bundler-exec script ...'
-x curl -L https://github.com/gma/bundler-exec/raw/master/bundler-exec.sh > ~/.bundler-exec.sh
+x curl -#L https://github.com/gma/bundler-exec/raw/master/bundler-exec.sh > ~/.bundler-exec.sh
 x echo '' >> $CONFIG
 x echo '# bundler-exec (https://github.com/gma/bundler-exec)' >> $CONFIG
 x echo '[ -f ~/.bundler-exec.sh ] && source ~/.bundler-exec.sh' >> $CONFIG
 
-echo 'Installing Heroku toolbelt ...'
-x wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+echo 'Installing Heroku toolbelt (CLI)...'
+x echo "deb http://toolbelt.heroku.com/ubuntu ./" | sudo tee /etc/apt/sources.list.d/heroku.list > /dev/null
+x curl -#L https://toolbelt.heroku.com/apt/release.key | sudo apt-key add -
+x sudo apt-get update
+x sudo apt-get install -y heroku-toolbelt
 
 echo 'Installing xclip for easy commandline clipboard access ...'
 i xclip
