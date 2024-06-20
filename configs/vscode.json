@@ -17,7 +17,7 @@
     "git.suggestSmartCommit": false,
     "workbench.colorTheme": "Tokyo Night",
     "workbench.iconTheme": "vscode-icons",
-	"extensions.ignoreRecommendations": true,
-	"telemetry.telemetryLevel": "off",
+    "extensions.ignoreRecommendations": true,
+    "telemetry.telemetryLevel": "off",
     "vsicons.dontShowNewVersionMessage": true
 }
