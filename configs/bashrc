@@ -1,0 +1,80 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+# History
+shopt -s histappend
+HISTCONTROL=ignoreboth
+HISTSIZE=32768
+HISTFILESIZE="${HISTSIZE}"
+
+# Window size check
+shopt -s checkwinsize
+
+# color prompt
+force_color_prompt=yes
+color_prompt=yes
+
+PS1=$'\uf0a9 '
+PS1="\[\e]0;\w\a\]$PS1"
+
+# Alias definitions.
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+# Autocompletions
+if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+# PATH manipulations
+
+# Usage: puniq [<path>]
+# Remove duplicate entries from a PATH style value while retaining
+# the original order. Use PATH if no <path> is given.
+#
+# Example:
+# $ puniq /usr/bin:/usr/local/bin:/usr/bin
+# /usr/bin:/usr/local/bin
+puniq () {
+    echo "$1" |tr : '\n' |nl |sort -u -k 2,2 |sort -n |
+    cut -f 2- |tr '\n' : |sed -e 's/:$//' -e 's/^://'
+}
+
+# Rust
+if [ -d "$HOME/.cargo/bin" ]; then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+# TODO: Add other languages runtimes here
+
+# Mise (shims)
+if command -v mise &> /dev/null; then
+    eval "$(mise activate bash --shims)"
+fi
+
+# Add ~/.local/bin & ~/.bin if they exists
+if [ -d "$HOME/.local/bin" ]; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+
+if [ -d "$HOME/bin" ]; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+PATH=$(puniq $PATH)
+export PATH
+
+# Default editor
+export EDITOR="vim"
+
+# mise
+if command -v mise &> /dev/null; then
+    eval "$(mise activate bash)"
+fi
+
+# starship prompt
+if command -v starship &> /dev/null; then
+    eval "$(starship init bash)"
+if

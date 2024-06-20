@@ -1,0 +1,26 @@
+# Filesystem
+alias ls="eza -lh --group-directories-first --icons"
+alias lt="eza --tree --level=2 --long --icons --git"
+alias ff="fzf --preview 'batcat --style=numbers --color=always {}'"
+alias df="df -h"
+alias du="du -h --max-depth=1"
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+
+# Utilities
+alias bat="batcat"
+alias lzg="lazygit"
+alias lzd="lazydocker"
+alias ssh="kitten ssh"
+
+# Clipboard
+alias pbcopy="xclip -selection cliboard"
+alias pbpaste="xclip -selection clipboard -o"
+
+# Git
+alias g="git"
+alias gcm="git commit -m"
+alias gcam="git commit -a -m"
+alias gcad="git commit -a --amend"
+alias git-deploy="git push origin master && git push deploy master"
