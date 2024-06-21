@@ -38,8 +38,9 @@ if $DEVSTRAP_GUM confirm "This script will bootstrap a freshly installed machine
     $DEVSTRAP_GUM spin --show-output --title="Updating base system..." -- sudo apt-get update -y && sudo apt-get upgrade -y
 
     # Run installers
-    for installer in "${DEVSTRAP_PATH}/install/*.sh"; do
+    for installer in ${DEVSTRAP_PATH}/install/*.sh; do
         . $installer
+        break
     done
 
     # Update packages after installing everything
