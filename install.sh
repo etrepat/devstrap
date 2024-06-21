@@ -9,6 +9,11 @@ if ! command -v git &> /dev/null; then
 fi
 
 echo "Cloning devstrap scripts..."
-git clone -b main https://github.com/etrepat/devstrap.git $DEVSTRAP_PATH > /dev/null
 
-. $DEVSTRAP_PATH/devstrap.sh
+if [ -d ${DEVSTRAP_PATH} ]; then
+    rm -fr ${DEVSTRAP_PATH}
+fi
+
+git clone -b main https://github.com/etrepat/devstrap.git ${DEVSTRAP_PATH} > /dev/null
+
+. ${DEVSTRAP_PATH}/devstrap.sh

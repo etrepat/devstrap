@@ -35,19 +35,19 @@ if $DEVSTRAP_GUM confirm "This script will bootstrap a freshly installed machine
     sudo -l > /dev/null
 
     # Update packages before installing anything
-    $DEVSTRAP_GUM spin --show-output --title="Updating base system..." -- sudo apt-get update -y && sudo apt-get upgrade -y
+    $DEVSTRAP_GUM spin --show-error --title="Updating base system..." -- sudo apt-get update -y && sudo apt-get upgrade -y
 
     # Run installers
     for installer in ${DEVSTRAP_PATH}/install/*.sh; do
         . $installer
-        break
     done
 
     # Update packages after installing everything
-    $DEVSTRAP_GUM spin --show-output --title="Apllying any missing updates..." -- sudo apt-get update -y && sudo apt-get upgrade -y
+    $DEVSTRAP_GUM spin --show-error --title="Aplying any missing updates..." -- sudo apt-get update -y && sudo apt-get upgrade -y
 fi
 
 m "Removing artifacts..."
 rm -f $DEVSTRAP_GUM
+rm -fr ${DEVSTRAP_PATH}
 
 m "All done!"
