@@ -1,0 +1,1 @@
+../install.d/00-term-kitty.sh

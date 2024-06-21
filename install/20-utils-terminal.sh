@@ -1,0 +1,1 @@
+../install.d/20-utils-terminal.sh
