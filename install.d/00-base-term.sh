@@ -1,3 +1,4 @@
+# Terminal
 # kitty - The fast, feature-rich, GPU based terminal emulator
 # https://sw.kovidgoyal.net/kitty/
 

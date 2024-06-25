@@ -5,7 +5,7 @@ DEVSTRAP_PATH="${DEVSTRAP_TMP}/devstrap"
 
 if ! command -v git &> /dev/null; then
     echo "Installing git..."
-    sudo apt install -y git > /dev/null
+    sudo apt-get install -y git > /dev/null
 fi
 
 echo "Cloning devstrap scripts..."

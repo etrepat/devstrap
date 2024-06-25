@@ -1,4 +1,5 @@
 # Install base packages & libraries
+
 $DEVSTRAP_GUM spin --show-error --title="Installing base packages & libraries..." -- sudo apt-get install -y \
     git curl wget zip unzip \
     build-essential pkg-config autoconf bison \

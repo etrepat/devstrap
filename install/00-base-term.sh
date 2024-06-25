@@ -1,0 +1,1 @@
+../install.d/00-base-term.sh

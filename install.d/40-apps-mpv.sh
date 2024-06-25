@@ -2,4 +2,4 @@
 # https://mpv.io/
 
 $DEVSTRAP_GUM spin --show-output --title="Installing mpv ..." -- \
-    sudo apt install -y mpv
+    sudo apt-get install -y mpv

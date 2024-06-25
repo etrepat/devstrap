@@ -22,7 +22,7 @@ DEVSTRAP_GUM="${DEVSTRAP_TMP}/gum"
 
 if [ ! -f "${DEVSTRAP_GUM}" ]; then
     GUM_PACKAGE_NAME="gum_0.14.1_Linux_x86_64"
-    curl -sLo "${DEVSTRAP_TMP}/${GUM_PACKAGE_NAME}.tar.gz" "https://github.com/charmbracelet/gum/releases/latest/download/${GUM_PACKAGE_NAME}.tar.gz"
+    curl -sSLo "${DEVSTRAP_TMP}/${GUM_PACKAGE_NAME}.tar.gz" "https://github.com/charmbracelet/gum/releases/latest/download/${GUM_PACKAGE_NAME}.tar.gz"
     tar -xf "${DEVSTRAP_TMP}/${GUM_PACKAGE_NAME}.tar.gz" -C "${DEVSTRAP_TMP}"
     cp -f ${DEVSTRAP_TMP}/${GUM_PACKAGE_NAME}/gum ${DEVSTRAP_GUM}
     rm -fr ${GUM_PACKAGE_NAME}
@@ -47,7 +47,6 @@ if $DEVSTRAP_GUM confirm "This script will bootstrap a freshly installed machine
 fi
 
 m "Removing artifacts..."
-rm -f $DEVSTRAP_GUM
-rm -fr ${DEVSTRAP_PATH}
+rm -fr ${DEVSTRAP_GUM} ${DEVSTRAP_PATH}
 
 m "All done!"
