@@ -7,7 +7,7 @@ rm -f code.deb
 cd -
 
 mkdir -p ~/.config/Code/User
-cp ~/.local/share/omakub/configs/vscode.json ~/.config/Code/User/settings.json
+cp -f "${DEVSTRAP_PATH}" ~/.config/Code/User/settings.json
 
 # Install default extension set
 code --install-extension enkia.tokyo-night

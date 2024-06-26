@@ -1,14 +1,18 @@
  # Download & install fonts
 
-cd $DEVSTRAP_TMP
+m "Installing 'CaskaydiaCove Nerd Font'..."
+if ! $(fc-list | grep -i "CaskaydiaCove" > /dev/null); then
+    cd $DEVSTRAP_TMP
 
-$DEVSTRAP_GUM spin --title="Downloading 'Cascadia Code' nerd font..." -- curl -sSLO https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/CascadiaCode.zip
+    curl -sSLO 'https://github.com/ryanoasis/nerd-fonts/releases/latest/CascadiaCode.zip'
+    unzip CascadiaCode.zip -d CascadiaFont
+    mkdir -p ~/.local/share/fonts
+    cp CascadiaFont/*.ttf ~/.local/share/fonts
+    rm -fr CascadiaCode.zip CascadiaFont
 
-unzip CascadiaCode.zip -d CascadiaFont
-mkdir -p ~/.local/share/fonts
-cp CascadiaFont/*.ttf ~/.local/share/fonts
-rm -fr CascadiaCode.zip CascadiaFont
+    cd -
 
-fc-cache -r
-
-cd -
+    fc-cache -r
+else
+    m "Font already exists in the system... Skipping..."
+fi
