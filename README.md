@@ -1,48 +1,35 @@
 # DevStrap
 
-DevStrap is a simple script to rapidly set up a debian/ubuntu box for Ruby/Rails
-development.
-
-## Requirements
-
-A recent fresh debian/ubuntu install.
+DevStrap is a bash script to rapidly set up a fresh ubuntu box for development.
 
 ## Compatibility
 
-Tested & working with latest Ubuntu 13.04 x64 (Raring Ringtail).
+Tested & working with latest Ubuntu 24.04 LTS x64 (Jammy Jellyfish).
 
 ## Install
 
 Run the script:
 
-    bash < <(wget -qO- https://raw.github.com/etrepat/devstrap/master/devstrap.sh)
+    bash < <(wget -qO- https://raw.github.com/etrepat/devstrap/main/install.sh)
 
 ## What does it do?
 
-This script main purpose is to bootstrap a fresh debian/ubuntu box into a nicely
-fitted ruby development environment. Beware, though, that **strong** assumptions
+This script main purpose is to bootstrap a fresh ubuntu box into a nicely fitted
+development environment. Beware, though, that **strong** assumptions
 are made on the tooling and environment setup.
 
-It will mainly install for you:
+It will mainly install & configure for you:
 
-* Compiler and build tools
-* All *base* dependencies to allow building gems from source without failing (most of)
-* Curl
-* Git
-* SQLite3 client and dev libraries
-* PostgreSQL client and dev libraries (yes, you should use postgres on development too)
-* Imagemagick for image manipulation client and dev libraries
-* Latest stable RVM
-* Latest stable patch-level of Ruby (from source)
-* Latest bundler on the global gemset
-* The `bundler-exec` script so you don't need to type `bundle [command] ...`
-every time.
-* Some tooling: xclip, tmux, vim, sublime text 2, ...
-* Perform some *very minimal* bash config/s: Aliases, paths, ...
-* SSH public key for authentication with your staging servers, heroku, github,
-bitbucket, ...
+* Terminal (kitty)
+* Bash w/starship.rs for prompt management along with an *opinionated* config
+* Compilers and build tools for several languages: Ruby, Go, Java, PHP, Rust, ...
+* System tools like curl, git, xclip, imagemagick ...
+* Visual Studio Code w/theme & a bare set of extensions
+* Several desktop applications: albert launcher, dropbox, flameshot, Google Chrome, ...
+* SSH public/private key for authentication (if not already present), ...
 
----
+Please, review the `install.d` directory for the detailed list of utilities installed & configs which will get applied.
 
-Assembled by Estanislau Trepat in 2012. Released under the terms of the MIT
-license (see LICENSE file).
+## License
+
+DevStrap is released under the [MIT License](https://opensource.org/licenses/MIT).
