@@ -18,3 +18,8 @@ code --install-extension eamodio.gitlens
 code --install-extension codezombiech.gitignore
 code --install-extension mikestead.dotenv
 code --install-extension annsk.alignment
+
+# Add lang extensions
+code --install-extension golang.go
+code --install-extension bmewburn.vscode-intelephense-client
+code --install-extension rust-lang.rust-analyzer
