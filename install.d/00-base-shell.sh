@@ -7,3 +7,6 @@ cp -f "${DEVSTRAP_PATH}/config/bash_aliases" ~/.bash_aliases
 
 [ -f "~/.bashrc" ] && mv ~/.bashrc ~/.bashrc.bak
 cp -f "${DEVSTRAP_PATH}/config/bashrc" ~/.bashrc
+
+[ -f "~/.inputrc" ] && mv ~/.inputrc ~/.inputrc.bak
+cp "${DEVSTRAP_PATH}/config/inputrc" ~/.inputrc
