@@ -32,7 +32,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     sudo apt-get update && sudo apt-get upgrade -y
 
     # Run installers
-    for installer in ${DEVSTRAP_PATH}/install/*.sh; do
+    for installer in ${DEVSTRAP_PATH}/install.d/*.sh; do
         . $installer
     done
 

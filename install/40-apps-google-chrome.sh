@@ -1,1 +1,0 @@
-../install.d/40-apps-google-chrome.sh

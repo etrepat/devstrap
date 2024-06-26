@@ -1,1 +1,0 @@
-../install.d/40-apps-localsend.sh

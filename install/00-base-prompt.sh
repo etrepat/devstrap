@@ -1,1 +1,0 @@
-../install.d/00-base-prompt.sh

@@ -1,1 +1,0 @@
-../install.d/00-base-shell.sh

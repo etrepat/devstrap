@@ -1,1 +1,0 @@
-../install.d/20-utils-lazygit.sh

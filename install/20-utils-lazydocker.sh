@@ -1,1 +1,0 @@
-../install.d/20-utils-lazydocker.sh
