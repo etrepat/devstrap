@@ -1,6 +1,6 @@
 # Visual Studio Code
 
-cd $DEVSTRAP_TMP
+cd ${DEVSTRAP_TMP}
 curl -sSLo code.deb 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
 sudo apt-get install -y ./code.deb
 rm -f code.deb

@@ -13,7 +13,7 @@ sudo apt-get install -y php8.3-cli php8.3-common php8.3-curl php8.3-gd \
         php8.3-tidy php8.3-ssh2 php-memcached php-redis php8.3-imagick \
 
 # Install composer
-cd $DEVSTRAP_TMP
+cd ${DEVSTRAP_TMP}
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 php composer-setup.php --quiet && sudo mv composer.phar /usr/local/bin/composer
 rm -f composer.setup

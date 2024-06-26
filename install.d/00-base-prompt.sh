@@ -3,7 +3,7 @@
 m "Installing Starship.rs..."
 
 if ! command -v starship &> /dev/null; then
-    cd $DEVSTRAP_TMP
+    cd ${DEVSTRAP_TMP}
 
     STARSHIP_VERSION=$(curl -s "https://api.github.com/repos/starship/starship/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
     curl -sSLo starship.tar.gz "https://github.com/starship/starship/releases/download/${STARSHIP_VERSION}/starship-x86_64-unknown-linux-musl.tar.gz"

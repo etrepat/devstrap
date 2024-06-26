@@ -2,7 +2,7 @@
 
 m "Installing 'CaskaydiaCove Nerd Font'..."
 if ! $(fc-list | grep -i "CaskaydiaCove" > /dev/null); then
-    cd $DEVSTRAP_TMP
+    cd ${DEVSTRAP_TMP}
 
     curl -sSLO 'https://github.com/ryanoasis/nerd-fonts/releases/latest/CascadiaCode.zip'
     unzip CascadiaCode.zip -d CascadiaFont
