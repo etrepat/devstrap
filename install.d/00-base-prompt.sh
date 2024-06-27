@@ -6,7 +6,7 @@ if ! command -v starship &> /dev/null; then
     cd ${DEVSTRAP_TMP}
 
     STARSHIP_VERSION=$(curl -s "https://api.github.com/repos/starship/starship/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
-    curl -sSLo starship.tar.gz "https://github.com/starship/starship/releases/download/${STARSHIP_VERSION}/starship-x86_64-unknown-linux-musl.tar.gz"
+    curl -sSLo starship.tar.gz "https://github.com/starship/starship/releases/download/v${STARSHIP_VERSION}/starship-x86_64-unknown-linux-musl.tar.gz"
 
     tar -xf starship.tar.gz starship
 
@@ -22,4 +22,4 @@ fi
 m "Bootstraping Starship.rs config..."
 mkdir -p ~/.config
 [ -f "~/.config/starship.toml" ] && mv ~/.config/starship.toml ~/.config/starship.toml.bak
-cp -f "${DEVSTRAP_PATH}/config/starship.toml" "~/.config/starship.toml"
+cp -f "${DEVSTRAP_PATH}/config/starship.toml" ~/.config/starship.toml
