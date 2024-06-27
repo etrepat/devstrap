@@ -15,11 +15,15 @@ code --install-extension vscode-icons-team.vscode-icons
 code --install-extension ms-azuretools.vscode-docker
 code --install-extension EditorConfig.EditorConfig
 code --install-extension eamodio.gitlens
-code --install-extension codezombiech.gitignore
 code --install-extension mikestead.dotenv
-code --install-extension annsk.alignment
 
 # Add lang extensions
+
+# Go
 code --install-extension golang.go
+
+# PHP (Intelephense)
 code --install-extension bmewburn.vscode-intelephense-client
+
+# Rust analyzer
 code --install-extension rust-lang.rust-analyzer
