@@ -77,4 +77,4 @@ fi
 # starship prompt
 if command -v starship &> /dev/null; then
     eval "$(starship init bash)"
-if
+fi
