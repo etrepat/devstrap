@@ -12,14 +12,3 @@ if ! command -v mise &> /dev/null; then
 else
     m "Seems to be already present, skipping..."
 fi
-
-m "Installing mise managed languages..."
-
-m "Installing (latest) Ruby..."
-mise use --global ruby@3.3
-
-m "Installing node LTS..."
-mise use --global node@lts
-
-m "Installing (latest) Go..."
-mise use --global go@latest
