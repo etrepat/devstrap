@@ -24,5 +24,5 @@ sed -i "s|Exec=kitty|Exec=$(readlink -f ~)/.local/kitty.app/bin/kitty|g" ~/.loca
 #echo 'kitty.desktop' > ~/.config/xdg-terminals.list
 
 mkdir -p ~/.config/kitty
-cp -f "${DEVSTRAP_PATH}/config/kitty.conf ~/.config/kitty/kitty.conf
-cp -f "${DEVSTRAP_PATH}/config/kitty/theme.conf ~/.config/kitty/theme.conf
+cp -f "${DEVSTRAP_PATH}/config/kitty.conf" ~/.config/kitty/kitty.conf
+cp -f "${DEVSTRAP_PATH}/config/kitty/theme.conf" ~/.config/kitty/theme.conf
