@@ -9,7 +9,7 @@ HISTFILESIZE="${HISTSIZE}"
 # Window size check
 shopt -s checkwinsize
 
-# color prompt
+# color & prompt
 force_color_prompt=yes
 color_prompt=yes
 
@@ -42,19 +42,19 @@ puniq () {
     cut -f 2- |tr '\n' : |sed -e 's/:$//' -e 's/^://'
 }
 
-# Rust
-if [ -d "$HOME/.cargo/bin" ]; then
-    PATH="$HOME/.cargo/bin:$PATH"
-fi
-
-# TODO: Add other languages runtimes here
-
 # Mise (shims)
 if command -v mise &> /dev/null; then
     eval "$(mise activate bash --shims)"
 fi
 
-# Add ~/.local/bin & ~/.bin if they exists
+# Rust
+if [ -d "$HOME/.cargo/bin" ]; then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+# TODO: Add other languages or runtimes here
+
+# Add ~/.local/bin & ~/bin if they exists
 if [ -d "$HOME/.local/bin" ]; then
     PATH="$HOME/.local/bin:$PATH"
 fi
@@ -68,6 +68,11 @@ export PATH
 
 # Default editor
 export EDITOR="vim"
+
+# fzf default key bindings
+if command -v fzf &> /dev/null; then
+  source /usr/share/doc/fzf/examples/key-bindings.bash
+fi
 
 # mise
 if command -v mise &> /dev/null; then
