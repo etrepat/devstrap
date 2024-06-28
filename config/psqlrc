@@ -1,0 +1,18 @@
+\set QUIET 1
+
+\setenv PAGER 'pspg -bX'
+
+\timing
+--\x auto
+\set VERBOSITY verbose
+\set HISTFILE ~/.psql_history- :DBNAME
+\set HISTCONTROL ignoredups
+\set COMP_KEYWORD_CASE upper
+\set ON_ERROR_ROLLBACK interactive
+
+\pset linestyle unicode
+\pset border 2
+\pset null '(null)'
+
+\set QUIET 0
+
