@@ -1,7 +1,7 @@
 # Albert launcher
 # https://albertlauncher.github.io/
 
-m "Installing Albert launcher..."
+echo "=> Installing Albert launcher..."
 
 UBUNTU_VERSION_ID=$(. /etc/os-release && echo "$VERSION_ID")
 

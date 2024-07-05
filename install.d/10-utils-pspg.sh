@@ -1,7 +1,7 @@
 # pspg - Postgres Pager
 # https://github.com/okbob/pspg
 
-m "Installing pspg..."
+echo "=> Installing pspg..."
 
 sudo apt-get install -y pspg
 

@@ -1,7 +1,7 @@
 # Mise for managing multiple versions of languages
 # https://mise.jdx.dev/
 
-m "Installing mise..."
+echo "=> Installing mise..."
 if ! command -v mise &> /dev/null; then
     sudo install -dm 755 /etc/apt/keyrings
     curl -sSL https://mise.jdx.dev/gpg-key.pub | gpg --dearmor | sudo tee /etc/apt/keyrings/mise-archive-keyring.gpg 1>/dev/null
@@ -10,5 +10,5 @@ if ! command -v mise &> /dev/null; then
     sudo apt-get update
     sudo apt-get install -y mise
 else
-    m "Seems to be already present, skipping..."
+    echo "=> Seems to be already present, skipping..."
 fi

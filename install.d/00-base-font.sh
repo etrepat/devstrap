@@ -1,6 +1,6 @@
  # Download & install fonts
 
-m "Installing 'CaskaydiaCove Nerd Font'..."
+echo "=> Installing 'CaskaydiaCove Nerd Font'..."
 if ! $(fc-list | grep -i "CaskaydiaCove" > /dev/null); then
     cd ${DEVSTRAP_TMP}
 
@@ -14,5 +14,5 @@ if ! $(fc-list | grep -i "CaskaydiaCove" > /dev/null); then
 
     fc-cache -r
 else
-    m "Font already exists in the system... Skipping..."
+    echo "=> Font already exists in the system... Skipping..."
 fi

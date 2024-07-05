@@ -1,6 +1,6 @@
 # Set the gnome hotkeys
 
-m "Configure GNOME settings & installing extensions..."
+echo "=> Configure GNOME settings & installing extensions..."
 
 sudo apt-get install -y gnome-tweaks gnome-shell-extension-manager pipx
 pipx install gnome-extensions-cli --system-site-packages

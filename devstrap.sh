@@ -1,21 +1,20 @@
 #!/usr/bin/env bash
 
+# Exit inmediately
 set -e
+
+# Reset sudo credentials
 sudo -k
-
-# Utility functions
-
-m() { echo -e "\e[1;33m~>\e[0m $*"; }
 
 # Setup
 
 DEVSTRAP_TMP="${DEVSTRAP_TMP:-/tmp}"
 DEVSTRAP_PATH="${DEVSTRAP_PATH:-${DEVSTRAP_TMP}/devstrap}"
 
-clear; m "Initializing..."
+clear;
+echo "=> Initializing..."
 
 # Bootstrap tooling
-
 if ! command -v curl &> /dev/null; then sudo apt-get install -y curl > /dev/null; fi
 
 # Installation
@@ -28,7 +27,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     sudo -l > /dev/null
 
     # Update packages before installing anything
-    m "Updating package dbs & applying upgrades (if any)..."
+    echo "=> Updating package dbs & applying upgrades (if any)..."
     sudo apt-get update && sudo apt-get upgrade -y
 
     # Run installers
@@ -37,11 +36,11 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
     done
 
     # Update packages after installing everything
-    m "Updating package dbs & applying upgrades (if any)..."
+    echo "=> Updating package dbs & applying upgrades (if any)..."
     sudo apt-get update && sudo apt-get upgrade -y
 fi
 
-m "Removing artifacts..."
+echo "=> Removing artifacts..."
 rm -fr ${DEVSTRAP_PATH}
 
-m "All done!"
+echo "=> All done!"

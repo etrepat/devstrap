@@ -1,6 +1,6 @@
 # Docker
 
-m "Installing Docker Engine..."
+echo "=> Installing Docker Engine..."
 
 # Add Docker's official gpg key
 sudo install -m 0755 -d /etc/apt/keyrings

@@ -4,11 +4,11 @@
 # kitty - The fast, feature-rich, GPU based terminal emulator
 # https://sw.kovidgoyal.net/kitty/
 
-m "Installing terminal application (kitty)..."
+echo "=> Installing terminal application (kitty)..."
 curl -sSL https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin \
     launch=n
 
-m "Bootstrapping kitty config..."
+echo "=> Bootstrapping kitty config..."
 
 # Create symbolic links to add kitty and kitten to PATH (assuming ~/.local/bin is in
 # your system-wide PATH)

@@ -1,7 +1,7 @@
 # Keepassxc - My password manager of choice
 # https://keepassxc.org/
 
-m "Intalling KeePassXC..."
+echo "=> Intalling KeePassXC..."
 
 # Add repository
 sudo add-apt-repository -y ppa:phoerious/keepassxc

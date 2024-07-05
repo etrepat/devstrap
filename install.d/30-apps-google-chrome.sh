@@ -1,6 +1,6 @@
 # Google Chrome
 
-m "Installing Google Chrome..."
+echo "=> Installing Google Chrome..."
 cd ${DEVSTRAP_TMP}
 curl -sSLO https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 sudo apt-get install -y ./google-chrome-stable_current_amd64.deb

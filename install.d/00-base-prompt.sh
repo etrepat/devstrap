@@ -1,6 +1,6 @@
 # Use starship.rs for prompt support
 
-m "Installing Starship.rs..."
+echo "=> Installing Starship.rs..."
 
 if ! command -v starship &> /dev/null; then
     cd ${DEVSTRAP_TMP}
@@ -16,10 +16,10 @@ if ! command -v starship &> /dev/null; then
 
     cd -
 else
-    m "It seems that Starship.rs is already present in the system..."
+    echo "=> It seems that Starship.rs is already present in the system..."
 fi
 
-m "Bootstraping Starship.rs config..."
+echo "=> Bootstraping Starship.rs config..."
 mkdir -p ~/.config
 [ -f "~/.config/starship.toml" ] && mv ~/.config/starship.toml ~/.config/starship.toml.bak
 cp -f "${DEVSTRAP_PATH}/config/starship.toml" ~/.config/starship.toml

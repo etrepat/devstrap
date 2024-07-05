@@ -1,2 +1,2 @@
-m "Installing node LTS..."
+echo "=> Installing node LTS..."
 mise use --global node@lts

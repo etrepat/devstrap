@@ -1,6 +1,6 @@
 # Set the gnome theme preferences
 
-m "Setting GNOME theme..."
+echo "=> Setting GNOME theme..."
 
 THEME_COLOR="purple"
 THEME_WALLPAPER="kanagawa.jpg"

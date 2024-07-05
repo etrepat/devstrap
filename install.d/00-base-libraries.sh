@@ -1,6 +1,6 @@
 # Install base packages & libraries
 
-m "Installing base packages & libraries..."
+echo "=> Installing base packages & libraries..."
 sudo apt-get install -y git curl wget zip unzip build-essential pkg-config \
     autoconf bison clang cmake imagemagick sqlite3 libsqlite3-0 libsqlite3-dev \
     postgresql-client redis-tools libpq-dev libssl-dev libreadline-dev \

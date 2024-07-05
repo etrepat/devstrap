@@ -1,6 +1,6 @@
 # Set common git aliases
 
-m "Applying some git config..."
+echo "=> Applying some git config..."
 
 git config --global alias.co checkout
 git config --global alias.br branch

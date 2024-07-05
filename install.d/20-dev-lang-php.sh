@@ -1,5 +1,5 @@
 # PHP
-m "Installing PHP (latest)..."
+echo "=> Installing PHP (latest)..."
 
 # Add repository
 # https://launchpad.net/~ondrej/+archive/ubuntu/php
