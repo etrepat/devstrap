@@ -10,12 +10,11 @@ sudo -k
 
 DEVSTRAP_TMP="${DEVSTRAP_TMP:-/tmp}"
 DEVSTRAP_PATH="${DEVSTRAP_PATH:-${DEVSTRAP_TMP}/devstrap}"
+DEVSTRAP_GUM="${DEVSTRAP_GUM:-${DEVSTRAP_TMP}/gum}"
 
-clear;
-echo "=> Initializing..."
-
-# Bootstrap tooling
-if ! command -v curl &> /dev/null; then sudo apt-get install -y curl > /dev/null; fi
+# Bootstrap required tooling
+clear; echo "=> Initializing..."
+for req in ${DEVSTRAP_PATH}/req.d/*.sh; do . $req; done
 
 # Installation
 m "This script will bootstrap a freshly installed machine w/several configuration choices."
@@ -41,6 +40,7 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 echo "=> Removing artifacts..."
+rm -f ${DEVSTRAP_GUM}
 rm -fr ${DEVSTRAP_PATH}
 
 echo "=> All done!"
