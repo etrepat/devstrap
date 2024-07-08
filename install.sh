@@ -11,6 +11,6 @@ if ! command -v git &> /dev/null; then sudo apt-get install -y git > /dev/null; 
 
 echo "=> Cloning devstrap scripts..."
 [ -d "${DEVSTRAP_PATH}" ] && rm -fr ${DEVSTRAP_PATH}
-git clone -b main https://github.com/etrepat/devstrap.git ${DEVSTRAP_PATH} > /dev/null
+git clone -b ubuntu https://github.com/etrepat/devstrap.git ${DEVSTRAP_PATH} > /dev/null
 
 . ${DEVSTRAP_PATH}/devstrap.sh
