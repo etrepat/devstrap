@@ -10,7 +10,7 @@ Tested & working with latest Ubuntu 24.04 LTS x64 (Jammy Jellyfish).
 
 Run the script:
 
-    bash < <(wget -qO- https://raw.github.com/etrepat/devstrap/main/install.sh)
+    curl -sSf 'https://raw.githubusercontent.com/etrepat/devstrap/ubuntu/install.sh' | bash
 
 ## What does it do?
 
