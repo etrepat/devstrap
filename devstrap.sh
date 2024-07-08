@@ -13,7 +13,7 @@ DEVSTRAP_GUM="${DEVSTRAP_GUM:-${DEVSTRAP_TMP}/gum}"
 
 # Bootstrap required tooling
 clear; echo "=> Initializing..."
-for req in ${DEVSTRAP_PATH}/req.d/*.sh; do . $req; done
+for req in ${DEVSTRAP_PATH}/requirements.d/*.sh; do . $req; done
 
 # Installation
 if ${DEVSTRAP_GUM} confirm "This script will bootstrap a freshly installed machine w/several configuration choices. Proceed?"; then
