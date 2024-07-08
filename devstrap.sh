@@ -20,10 +20,14 @@ if ${DEVSTRAP_GUM} confirm "This script will bootstrap a freshly installed machi
     # Ask for password preemtively
     sudo -l > /dev/null
 
-    # Select dev languages to install
+    # Ask the user to select which programming languages to install
     DEVSTRAP_AVAILABLE_LANGS=("Elixir" "Go" "Java" "Node.js" "PHP" "Python" "Ruby" "Rust")
     DEVSTRAP_DEFAULT_LANGS="Node.js","PHP"
     DEVSTRAP_SELECTED_LANGS=$(${DEVSTRAP_GUM} choose "${DEVSTRAP_AVAILABLE_LANGS[@]}" --no-limit --selected "${DEVSTRAP_DEFAULT_LANGS}" --height 10 --header "Please, select the programming languages to install")
+
+    # Ask the user it it wants to apply GNOME settings & customizations (if using gnome) ?
+    DEVSTRAP_USING_GNOME=$([[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]] && echo true || echo false)
+    DEVSTRAP_GNOME_CUSTOMIZE=$(${DEVSTRAP_USING_GNOME} && ${DEVSTRAP_GUM} confirm "Apply GNOME theme & customizations (including plugins)?" && echo 'y')
 
     # Update & upgrade packages before installing anything
     ${DEVSTRAP_GUM} spin --title "Updating package dbs..." -- sudo apt-get update > /dev/null
