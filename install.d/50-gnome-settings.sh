@@ -31,10 +31,12 @@ gsettings set org.gnome.desktop.wm.preferences num-workspaces 4
 # Install extensions
 gext install tactile@lundal.io
 gext install caffeine@patapon.info
+gext install tophat@fflewddur.github.io
 
 # Compile gsettings schemas in order to be able to set them
 sudo cp ~/.local/share/gnome-shell/extensions/tactile@lundal.io/schemas/org.gnome.shell.extensions.tactile.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/caffeine@patapon.info/schemas/org.gnome.shell.extensions.caffeine.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp ~/.local/share/gnome-shell/extensions/tophat@fflewddur.github.io/schemas/org.gnome.shell.extensions.tophat.gschema.xml /usr/share/glib-2.0/schemas/
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
 # Configure Tactile
@@ -46,6 +48,10 @@ gsettings set org.gnome.shell.extensions.tactile row-0 1
 gsettings set org.gnome.shell.extensions.tactile row-1 2
 gsettings set org.gnome.shell.extensions.tactile row-2 1
 gsettings set org.gnome.shell.extensions.tactile gap-size 16
+
+# Configure TopHat
+gsettings set org.gnome.shell.extensions.tophat show-disk false
+gsettings set org.gnome.shell.extensions.tophat meter-fg-color "#924d8b"
 
 # Keybindings
 
