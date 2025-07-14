@@ -7,9 +7,9 @@ set -e
 sudo -k
 
 # Setup
-DEVSTRAP_TMP="${DEVSTRAP_TMP:-/tmp}"
-DEVSTRAP_PATH="${DEVSTRAP_PATH:-${DEVSTRAP_TMP}/devstrap}"
-DEVSTRAP_GUM="${DEVSTRAP_GUM:-${DEVSTRAP_TMP}/gum}"
+export DEVSTRAP_TMP="${DEVSTRAP_TMP:-/tmp}"
+export DEVSTRAP_PATH="${DEVSTRAP_PATH:-${DEVSTRAP_TMP}/devstrap}"
+export DEVSTRAP_GUM="${DEVSTRAP_GUM:-${DEVSTRAP_TMP}/gum}"
 
 # Bootstrap required tooling
 clear; echo "=> Initializing..."
@@ -23,11 +23,11 @@ if ${DEVSTRAP_GUM} confirm "This script will bootstrap a freshly installed machi
     # Ask the user to select which programming languages to install
     DEVSTRAP_AVAILABLE_LANGS=("Elixir" "Go" "Java" "Node.js" "PHP" "Python" "Ruby" "Rust")
     DEVSTRAP_DEFAULT_LANGS="Node.js","PHP"
-    DEVSTRAP_SELECTED_LANGS=$(${DEVSTRAP_GUM} choose "${DEVSTRAP_AVAILABLE_LANGS[@]}" --no-limit --selected "${DEVSTRAP_DEFAULT_LANGS}" --height 10 --header "Please, select the programming languages to install")
+    export DEVSTRAP_SELECTED_LANGS=$(${DEVSTRAP_GUM} choose "${DEVSTRAP_AVAILABLE_LANGS[@]}" --no-limit --selected "${DEVSTRAP_DEFAULT_LANGS}" --height 10 --header "Please, select the programming languages to install")
 
     # Ask the user it it wants to apply GNOME settings & customizations (if using gnome) ?
     DEVSTRAP_USING_GNOME=$([[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]] && echo true || echo false)
-    DEVSTRAP_GNOME_CUSTOMIZE=$(${DEVSTRAP_USING_GNOME} && ${DEVSTRAP_GUM} confirm "Apply GNOME theme & customizations (including plugins)?" && echo 'y')
+    export DEVSTRAP_GNOME_CUSTOMIZE=$(${DEVSTRAP_USING_GNOME} && ${DEVSTRAP_GUM} confirm "Apply GNOME theme & customizations (including plugins)?" && echo 'y')
 
     # Update & upgrade packages before installing anything
     ${DEVSTRAP_GUM} spin --title "Updating package dbs..." -- sudo apt-get update > /dev/null
@@ -42,5 +42,11 @@ fi
 echo "=> Removing artifacts..."
 rm -f ${DEVSTRAP_GUM}
 rm -fr ${DEVSTRAP_PATH}
+
+unset DEVSTRAP_GNOME_CUSTOMIZE
+unset DEVSTRAP_SELECTED_LANGS
+unset DEVSTRAP_GUM
+unset DEVSTRAP_PATH
+unset DEVSTRAP_TMP
 
 echo "=> All done!"
