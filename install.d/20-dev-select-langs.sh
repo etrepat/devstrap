@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Install selected programming languages
 
 if [[ ! -v DEVSTRAP_SELECTED_LANGS ]]; then
@@ -30,15 +31,7 @@ if [[ -n "${DEVSTRAP_SELECTED_LANGS}" ]]; then
 			;;
 		PHP)
             echo "=> Installing PHP (latest)..."
-            # Add repository
-            # https://launchpad.net/~ondrej/+archive/ubuntu/php
-            # The main PPA for supported PHP versions with many PECL extensions
-            sudo add-apt-repository -y ppa:ondrej/php
-            # Install cli & suitable set of extensions for Laravel development
-            sudo apt-get install -y php8.4-cli php8.4-common php8.4-curl php8.4-gd \
-                    php8.4-intl php8.4-mbstring php8.4-opcache php8.4-pgsql \
-                    php8.4-readline php8.4-soap php8.4-xml php8.4-zip php8.4-bcmath \
-                    php8.4-tidy php8.4-ssh2 php-memcached php-redis php8.4-imagick
+            yay -S --noconfirm --needed php php-redis php-memcached php-imagick php-gd php-pgsql php-tidy
             # Install composer
             php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
             php composer-setup.php --quiet && sudo mv composer.phar /usr/local/bin/composer

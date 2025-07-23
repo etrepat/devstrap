@@ -1,10 +1,14 @@
- # Download & install fonts
+#!/usr/bin/env bash
+# Download & install fonts
+
+echo "=> Installing fonts..."
+yay -S --noconfirm --needed ttf-font-awesome noto-fonts noto-fonts-emoji noto-fonts-extra
 
 echo "=> Installing 'CaskaydiaCove Nerd Font'..."
 if ! $(fc-list | grep -i "CaskaydiaCove" > /dev/null); then
     cd ${DEVSTRAP_TMP}
 
-    curl -fsSLO 'https://github.com/ryanoasis/nerd-fonts/releases/latest/download/CascadiaCode.zip'
+    curl -fSLO 'https://github.com/ryanoasis/nerd-fonts/releases/latest/download/CascadiaCode.zip'
     unzip CascadiaCode.zip -d CascadiaFont
     mkdir -p ~/.local/share/fonts
     cp CascadiaFont/*.ttf ~/.local/share/fonts

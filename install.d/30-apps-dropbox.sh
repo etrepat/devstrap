@@ -1,5 +1,6 @@
+#!/usr/bin/env bash
 # Dropbox
 
 echo "=> Installing Dropbox..."
-sudo apt-get install -y nautilus-dropbox
-gtk-launch dropbox.desktop
+yay -S --noconfirm --needed dropbox
+# gtk-launch dropbox.desktop

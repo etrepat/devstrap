@@ -12,7 +12,6 @@ alias ....="cd ../../.."
 alias bat="batcat"
 alias lzg="lazygit"
 alias lzd="lazydocker"
-alias ssh="kitten ssh"
 
 # Clipboard
 alias pbcopy="xclip -selection cliboard"

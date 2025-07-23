@@ -1,19 +1,35 @@
+#!/usr/bin/env bash
 # Set the gnome settings, extensions & hotkeys
 
 # Skip if not in gnome or mandated by user...
 [[ -n "${DEVSTRAP_GNOME_CUSTOMIZE}" && "${DEVSTRAP_GNOME_CUSTOMIZE}" = "y" ]] && return 0
 
 echo "=> Configure GNOME settings & installing extensions..."
+s
+yay -Rns --noconfirm gnome-tour
 
-sudo apt-get install -y gnome-tweaks gnome-shell-extension-manager pipx
+yay -S --noconfirm --needed python-pipx
 pipx install gnome-extensions-cli --system-site-packages
 
-# Turn off some default Ubuntu extensions
-gnome-extensions disable tiling-assistant@ubuntu.com
-gnome-extensions disable ding@rastersoft.com
+# Install extensions
+gext install dash-to-dock@micxgx.gmail.com
+gext install tactile@lundal.io
+gext install caffeine@patapon.info
+gext install Vitals@CoreCoding.com
+gext install blur-my-shell@aunetx
+gext install space-bar@luchrioh
+
+# Compile gsettings schemas in order to be able to set them
+sudo cp ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/org.gnome.shell.extensions.dash-to-dock.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp ~/.local/share/gnome-shell/extensions/tactile@lundal.io/schemas/org.gnome.shell.extensions.tactile.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp ~/.local/share/gnome-shell/extensions/caffeine@patapon.info/schemas/org.gnome.shell.extensions.caffeine.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp ~/.local/share/gnome-shell/extensions/Vitals@CoreCoding.com/schemas/org.gnome.shell.extensions.vitals.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp ~/.local/share/gnome-shell/extensions/blur-my-shell\@aunetx/schemas/org.gnome.shell.extensions.blur-my-shell.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp ~/.local/share/gnome-shell/extensions/space-bar\@luchrioh/schemas/org.gnome.shell.extensions.space-bar.gschema.xml /usr/share/glib-2.0/schemas/
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
 # Set default terminal application
-gsettings set org.gnome.desktop.default-applications.terminal exec 'kitty'
+gsettings set org.gnome.desktop.default-applications.terminal exec 'ghostty'
 
 # Center new windows in the middle of the screen
 gsettings set org.gnome.mutter center-new-windows true
@@ -26,25 +42,11 @@ gsettings set org.gnome.shell.extensions.dash-to-dock autohide true
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
 gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode DYNAMIC
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 48
+gsettings set org.gnome.shell.extensions.dash-to-dock hot-keys false
 
 # Use 6 fixed workspaces instead of dynamic mode
 gsettings set org.gnome.mutter dynamic-workspaces false
 gsettings set org.gnome.desktop.wm.preferences num-workspaces 6
-
-# Install extensions
-gext install tactile@lundal.io
-gext install caffeine@patapon.info
-gext install tophat@fflewddur.github.io
-gext install blur-my-shell@aunetx
-gext install space-bar@luchrioh
-
-# Compile gsettings schemas in order to be able to set them
-sudo cp ~/.local/share/gnome-shell/extensions/tactile@lundal.io/schemas/org.gnome.shell.extensions.tactile.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/caffeine@patapon.info/schemas/org.gnome.shell.extensions.caffeine.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/tophat@fflewddur.github.io/schemas/org.gnome.shell.extensions.tophat.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/blur-my-shell\@aunetx/schemas/org.gnome.shell.extensions.blur-my-shell.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/space-bar\@luchrioh/schemas/org.gnome.shell.extensions.space-bar.gschema.xml /usr/share/glib-2.0/schemas/
-sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
 # Configure Tactile
 gsettings set org.gnome.shell.extensions.tactile col-0 1
@@ -55,10 +57,6 @@ gsettings set org.gnome.shell.extensions.tactile row-0 1
 gsettings set org.gnome.shell.extensions.tactile row-1 2
 gsettings set org.gnome.shell.extensions.tactile row-2 1
 gsettings set org.gnome.shell.extensions.tactile gap-size 16
-
-# Configure TopHat
-gsettings set org.gnome.shell.extensions.tophat show-disk false
-gsettings set org.gnome.shell.extensions.tophat meter-fg-color "#924d8b"
 
 # Configure Blur My Shell
 gsettings set org.gnome.shell.extensions.blur-my-shell.appfolder blur false
@@ -81,6 +79,17 @@ gsettings set org.gnome.shell.extensions.space-bar.shortcuts enable-move-to-work
 gsettings set org.gnome.shell.extensions.space-bar.shortcuts open-menu "@as []"
 
 # Keybindings
+
+# Use alt for pinned apps
+gsettings set org.gnome.shell.keybindings switch-to-application-1 "['<Alt>1']"
+gsettings set org.gnome.shell.keybindings switch-to-application-2 "['<Alt>2']"
+gsettings set org.gnome.shell.keybindings switch-to-application-3 "['<Alt>3']"
+gsettings set org.gnome.shell.keybindings switch-to-application-4 "['<Alt>4']"
+gsettings set org.gnome.shell.keybindings switch-to-application-5 "['<Alt>5']"
+gsettings set org.gnome.shell.keybindings switch-to-application-6 "['<Alt>6']"
+gsettings set org.gnome.shell.keybindings switch-to-application-7 "['<Alt>7']"
+gsettings set org.gnome.shell.keybindings switch-to-application-8 "['<Alt>8']"
+gsettings set org.gnome.shell.keybindings switch-to-application-9 "['<Alt>9']"
 
 # Use super for workspaces
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-1 "['<Super>1']"
@@ -106,10 +115,10 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 
 # Set kitty to Ctrl+Alt+T & remove default
 gsettings set org.gnome.settings-daemon.plugins.media-keys terminal "@as []"
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'Terminal (kitty)'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'kitty'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'Terminal (ghostty)'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'ghostty'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding '<Control><Alt>t'
 
 # Remove artifacts
 pipx uninstall gnome-extensions-cli
-sudo apt-get autoremove --purge -y pipx
+yay -Rns python-pipx

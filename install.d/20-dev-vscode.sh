@@ -1,11 +1,8 @@
+#!/usr/bin/env bash
 # Visual Studio Code
 
 echo "=> Install Visual Studio Code..."
-cd ${DEVSTRAP_TMP}
-curl -sSLo code.deb 'https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64'
-sudo apt-get install -y ./code.deb
-rm -f code.deb
-cd -
+yay -S --noconfirm --needed visual-studio-code-bin
 
 echo "=> Copying base config..."
 mkdir -p ~/.config/Code/User
@@ -22,13 +19,21 @@ code --install-extension eamodio.gitlens
 code --install-extension mikestead.dotenv
 
 # Add lang extensions
-echo "=> Installing language extensions..."
+echo "=> Installing language extensions (if selected)..."
 
 # Go
-code --install-extension golang.go
+if [[ -n "$DEVSTRAP_SELECTED_LANGS" && " $DEVSTRAP_SELECTED_LANGS " =~ [[:space:]]Go[[:space:]] ]]; then
+    code --install-extension golang.go
+fi
+
 
 # PHP (Intelephense)
-code --install-extension bmewburn.vscode-intelephense-client
+if [[ -n "$DEVSTRAP_SELECTED_LANGS" && " $DEVSTRAP_SELECTED_LANGS " =~ [[:space:]]PHP[[:space:]] ]]; then
+    code --install-extension bmewburn.vscode-intelephense-client
+fi
+
 
 # Rust analyzer
-code --install-extension rust-lang.rust-analyzer
+if [[ -n "$DEVSTRAP_SELECTED_LANGS" && " $DEVSTRAP_SELECTED_LANGS " =~ [[:space:]]Rust[[:space:]] ]]; then
+    code --install-extension rust-lang.rust-analyzer
+fi

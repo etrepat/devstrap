@@ -1,5 +1,11 @@
 # ~/.bashrc
 
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
 # History
 shopt -s histappend
 HISTCONTROL=ignoreboth
@@ -71,7 +77,13 @@ export EDITOR="vim"
 
 # fzf default key bindings
 if command -v fzf &> /dev/null; then
-  source /usr/share/doc/fzf/examples/key-bindings.bash
+    if [ -f /usr/share/fzf/completion.bash ]; then
+        source /usr/share/fzf/completion.bash
+    fi
+
+    if [ -f /usr/share/fzf/key-bindings.bash ]; then
+        source /usr/share/fzf/key-bindings.bash
+    fi
 fi
 
 # mise
