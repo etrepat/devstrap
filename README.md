@@ -7,6 +7,9 @@ DevStrap is a bash script to rapidly set up a fresh linux box for development.
 Currently there are two supported & tested versions for Ubuntu 24.04 LTS x64 
 (Jammy Jellyfish) and Arch Linux x64 (GNOME desktop).
 
+* [Ubuntu 24.04 LTS x64](https://github.com/etrepat/devstrap/tree/ubuntu)
+* [Arch Linux (GNOME)](https://github.com/etrepat/devstrap/tree/archlinux)
+
 ## Install
 
 ### Ubuntu 24.04 LTS x64
