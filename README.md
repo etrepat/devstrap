@@ -30,6 +30,10 @@ It will mainly install & configure for you:
 
 Please, review the `install.d` directory for the detailed list of utilities installed & configs which will get applied.
 
+## Other versions / OS
+
+* [Arch Linux (GNOME)](https://github.com/etrepat/devstrap/tree/archlinux)
+
 ## License
 
 DevStrap is released under the [MIT License](https://opensource.org/licenses/MIT).
