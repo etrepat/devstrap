@@ -16,9 +16,6 @@ for req in ${DEVSTRAP_PATH}/requirements.d/*.sh; do . $req; done
 
 # Installation
 if gum confirm "This script will bootstrap a freshly installed machine w/several configuration choices. Proceed?"; then
-    # Ask for password preemtively
-    sudo -l > /dev/null
-
     # Identify user (for git config)
     export DEVSTRAP_USERNAME=$(gum input --placeholder "Enter full name" --prompt "Name> ")
     export DEVSTRAP_USER_EMAIL=$(gum input --placeholder "Enter email address" --prompt "Email> ")
@@ -31,6 +28,9 @@ if gum confirm "This script will bootstrap a freshly installed machine w/several
     # Ask the user it it wants to apply GNOME settings & customizations (if using gnome) ?
     DEVSTRAP_USING_GNOME=$([[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]] && echo true || echo false)
     export DEVSTRAP_GNOME_CUSTOMIZE=$(${DEVSTRAP_USING_GNOME} && gum confirm "Apply GNOME theme & customizations (including plugins)?" && echo 'y')
+
+    # Ask for password preemtively
+    sudo -l > /dev/null
 
     # Update & upgrade packages before installing anything
     gum spin --title "Upgrading base system (if needed)..." -- yay -Syu > /dev/null
