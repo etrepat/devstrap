@@ -3,3 +3,4 @@
 
 echo "=> Installing Firefox..."
 yay -S --noconfirm --needed firefox firefox-i18n-ca firefox-i18n-es-es
+xdg-settings set default-web-browser firefox.desktop
