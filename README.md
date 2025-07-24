@@ -1,38 +1,46 @@
-# DevStrap
+# DevStrap - Arch Linux (x64, GNOME desktop)
 
-DevStrap is a bash script to rapidly set up a fresh archlinux GNOME box for development.
+DevStrap is a bash script that rapidly sets up a fresh Arch (GNOME desktop) system with a fully-configured development environment.
 
-## Compatibility
+## ✅ Compatibility
 
-Tested & working with latest Arch ISO installer (July 2025) on x64 architecture.
+DevStrap currently supports the following 64-bit Linux distributions. Each version is maintained in its own branch 
+with a dedicated installation script. **We strongly recommend reviewing the script before executing it on your system.**
 
-## Install
+* **Arch Linux (x64, GNOME desktop)**
+    → [View installation script](https://github.com/etrepat/devstrap/tree/archlinux/install.sh)
+    → [Go to the `archlinux` branch](https://github.com/etrepat/devstrap/tree/archlinux)
+* Ubuntu 24.04 LTS (Jammy Jellyfish) 
+    → [View installation script](https://github.com/etrepat/devstrap/tree/ubuntu/install.sh)
+    → [Go to the `ubuntu` branch](https://github.com/etrepat/devstrap/tree/ubuntu)
 
-Run the script:
+## 🚀 Installation
 
-    curl -sSf 'https://raw.githubusercontent.com/etrepat/devstrap/archlinux/install.sh' | bash
+1. Download the latest [Arch Linux ISO](https://archlinux.org/download/) and boot into it.
+2. Run `archinstall`, selecting the **Desktop profile** and choosing **GNOME** as the desktop environment. Feel free to 
+customize the installation as needed.
+3. Once the system is installed and running, open a terminal and execute:
 
-## What does it do?
+```bash
+curl -sSf 'https://raw.githubusercontent.com/etrepat/devstrap/archlinux/install.sh' | bash
+```
 
-This script main purpose is to bootstrap a fresh archlinux GNOME box (right after running archinstall, for example) into 
-a nicely fitted development environment. Beware, though, that **strong** assumptions
-are made on the tooling and environment setup.
+## 🛠 What It Does
 
-It will mainly install & configure for you:
+DevStrap automates the process of turning a clean Linux installation into a well-equipped development machine. It 
+applies a number of opinionated configurations and installs a curated set of tools and applications.
 
-* Terminal (ghostty)
-* Bash w/starship.rs for prompt management along with an *opinionated* config
-* Compilers and build tools for several languages: Ruby, Go, Java, PHP, Rust, ...
-* System tools like curl, git, xclip, imagemagick ...
-* Visual Studio Code w/theme & a bare set of extensions
-* Several desktop applications: albert launcher, dropbox, flameshot, Firefox, ...
-* SSH public/private key for authentication (if not already present), ...
+### Included by default
 
-Please, review the `install.d` directory for the detailed list of utilities installed & configs which will get applied.
+* **Terminal emulators:** [kitty](https://sw.kovidgoyal.net/kitty/) or [ghostty](https://github.com/ghostty/ghostty)
+* **Shell:** Bash with an opinionated custom configuration & [starship.rs](https://starship.rs/) prompt.
+* **Languages & build tools:** Ruby, Go, Java, PHP, Rust, and more
+* **Core utilities:** curl, git, xclip, imagemagick, etc.
+* **Editor:** Visual Studio Code, preconfigured with a theme and a basic extension set
+* **Desktop apps:** Albert launcher, Dropbox, Flameshot, Google Chrome / Firefox, and others
+* **SSH setup:** Generates a public/private key pair if one doesn't already exist
 
-## Other versions / OS
-
-* [Ubuntu 24.04 LTS](https://github.com/etrepat/devstrap/tree/ubuntu)
+🔍 For a complete list of installed packages and applied configurations, see the `install.d` directory.
 
 ## License
 
