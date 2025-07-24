@@ -30,6 +30,10 @@ It will mainly install & configure for you:
 
 Please, review the `install.d` directory for the detailed list of utilities installed & configs which will get applied.
 
+## Other versions / OS
+
+* [Ubuntu 24.04 LTS](https://github.com/etrepat/devstrap/tree/ubuntu)
+
 ## License
 
 DevStrap is released under the [MIT License](https://opensource.org/licenses/MIT).
