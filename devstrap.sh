@@ -51,4 +51,9 @@ unset DEVSTRAP_USERNAME
 unset DEVSTRAP_PATH
 unset DEVSTRAP_TMP
 
+echo "=> Doing cleanup..."
+yay -Rns --noconfirm $(yay -Qdtq)
+yay -Sc --noconfirm
+yay -Syu --noconfirm
+
 echo "=> All done!"
