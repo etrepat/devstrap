@@ -133,4 +133,4 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 
 # Remove artifacts
 pipx uninstall gnome-extensions-cli
-yay -Rns python-pipx
+yay -Rns --noconfirm python-pipx
