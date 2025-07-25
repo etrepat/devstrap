@@ -12,6 +12,7 @@ yay -S --noconfirm --needed python-pipx
 pipx install gnome-extensions-cli --system-site-packages
 
 # Install extensions
+gext install appindicatorsupport@rgcjonas.gmail.com
 gext install dash-to-dock@micxgx.gmail.com
 gext install tactile@lundal.io
 gext install caffeine@patapon.info
@@ -20,6 +21,7 @@ gext install blur-my-shell@aunetx
 gext install space-bar@luchrioh
 
 # Compile gsettings schemas in order to be able to set them
+sudo cp ~/.local/share/gnome-shell/extensions/appindicatorsupport\@rgcjonas.gmail.com/schemas/org.gnome.shell.extensions.appindicator.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/org.gnome.shell.extensions.dash-to-dock.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/tactile@lundal.io/schemas/org.gnome.shell.extensions.tactile.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/caffeine@patapon.info/schemas/org.gnome.shell.extensions.caffeine.gschema.xml /usr/share/glib-2.0/schemas/
@@ -37,6 +39,12 @@ gsettings set org.gnome.mutter center-new-windows true
 # Reveal week numbers in the Gnome calendar
 gsettings set org.gnome.desktop.calendar show-weekdate true
 
+# Show all options for input sources
+gsettings set org.gnome.desktop.input-sources show-all-sources true
+
+# Make writing a '~' character not require pressing space (for es ISO keyboards)
+gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'es+deadtilde')]"
+
 # Configure Dock
 gsettings set org.gnome.shell.extensions.dash-to-dock autohide true
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
@@ -44,7 +52,6 @@ gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode DYNAMIC
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 48
 gsettings set org.gnome.shell.extensions.dash-to-dock hot-keys false
 gsettings set org.gnome.shell.favorite-apps "['ghostty.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.Nautilus.desktop', 'firefox.desktop', 'spotify.desktop', 'code.desktop' 'localsend.desktop', 'org.gnome.Settings.desktop']"
-
 
 # Use 6 fixed workspaces instead of dynamic mode
 gsettings set org.gnome.mutter dynamic-workspaces false
