@@ -3,7 +3,7 @@
 
 if [[ ! -v DEVSTRAP_SELECTED_LANGS ]]; then
     DEVSTRAP_AVAILABLE_LANGS=("Elixir" "Go" "Java" "Node.js" "PHP" "Python" "Ruby" "Rust")
-    DEVSTRAP_SELECTED_LANGS=$(${DEVSTRAP_GUM} choose "${DEVSTRAP_AVAILABLE_LANGS[@]}" --no-limit --height 10 --header "Please, select the programming languages to install")
+    DEVSTRAP_SELECTED_LANGS=$(gum choose "${DEVSTRAP_AVAILABLE_LANGS[@]}" --no-limit --height 10 --header "Please, select the programming languages to install")
 fi
 
 if [[ -n "${DEVSTRAP_SELECTED_LANGS}" ]]; then
