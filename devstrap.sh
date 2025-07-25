@@ -16,9 +16,11 @@ clear; echo "=> Initializing..."
 for req in ${DEVSTRAP_PATH}/requirements.d/*.sh; do . $req; done
 
 # Installation
+clear; echo -e "\e[33;1mdevstrap\e[0m"
 if ${DEVSTRAP_GUM} confirm "This script will bootstrap a freshly installed machine w/several configuration choices. Proceed?"; then
-    # Ask for password preemtively
-    sudo -l > /dev/null
+    # Identify user (for git config)
+    export DEVSTRAP_USERNAME=$(${DEVSTRAP_GUM} input --placeholder "Enter full name" --prompt "Name> ")
+    export DEVSTRAP_USER_EMAIL=$(${DEVSTRAP_GUM} input --placeholder "Enter email address" --prompt "Email> ")
 
     # Ask the user to select which programming languages to install
     DEVSTRAP_AVAILABLE_LANGS=("Elixir" "Go" "Java" "Node.js" "PHP" "Python" "Ruby" "Rust")
@@ -28,6 +30,9 @@ if ${DEVSTRAP_GUM} confirm "This script will bootstrap a freshly installed machi
     # Ask the user it it wants to apply GNOME settings & customizations (if using gnome) ?
     DEVSTRAP_USING_GNOME=$([[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]] && echo true || echo false)
     export DEVSTRAP_GNOME_CUSTOMIZE=$(${DEVSTRAP_USING_GNOME} && ${DEVSTRAP_GUM} confirm "Apply GNOME theme & customizations (including plugins)?" && echo 'y')
+
+    # Ask for password preemtively
+    sudo -l > /dev/null
 
     # Update & upgrade packages before installing anything
     ${DEVSTRAP_GUM} spin --title "Updating package dbs..." -- sudo apt-get update > /dev/null
@@ -45,6 +50,8 @@ rm -fr ${DEVSTRAP_PATH}
 
 unset DEVSTRAP_GNOME_CUSTOMIZE
 unset DEVSTRAP_SELECTED_LANGS
+unset DEVSTRAP_USER_EMAIL
+unset DEVSTRAP_USERNAME
 unset DEVSTRAP_GUM
 unset DEVSTRAP_PATH
 unset DEVSTRAP_TMP

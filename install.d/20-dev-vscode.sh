@@ -25,10 +25,18 @@ code --install-extension mikestead.dotenv
 echo "=> Installing language extensions..."
 
 # Go
-code --install-extension golang.go
+if [[ -n "$DEVSTRAP_SELECTED_LANGS" && " $DEVSTRAP_SELECTED_LANGS " =~ [[:space:]]Go[[:space:]] ]]; then
+    code --install-extension golang.go
+fi
+
 
 # PHP (Intelephense)
-code --install-extension bmewburn.vscode-intelephense-client
+if [[ -n "$DEVSTRAP_SELECTED_LANGS" && " $DEVSTRAP_SELECTED_LANGS " =~ [[:space:]]PHP[[:space:]] ]]; then
+    code --install-extension bmewburn.vscode-intelephense-client
+fi
+
 
 # Rust analyzer
-code --install-extension rust-lang.rust-analyzer
+if [[ -n "$DEVSTRAP_SELECTED_LANGS" && " $DEVSTRAP_SELECTED_LANGS " =~ [[:space:]]Rust[[:space:]] ]]; then
+    code --install-extension rust-lang.rust-analyzer
+fi

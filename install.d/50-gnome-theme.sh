@@ -3,6 +3,11 @@
 # Skip if not in gnome or mandated by user...
 [[ -n "${DEVSTRAP_GNOME_CUSTOMIZE}" && "${DEVSTRAP_GNOME_CUSTOMIZE}" = "y" ]] && return 0
 
+echo "=> Setting GNOME fonts..."
+
+# Set Cascadia Mono as the default monospace font
+gsettings set org.gnome.desktop.interface monospace-font-name 'CaskaydiaCove Nerd Font 11'
+
 echo "=> Setting GNOME theme..."
 
 THEME_COLOR="purple"
