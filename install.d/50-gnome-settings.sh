@@ -45,6 +45,9 @@ gsettings set org.gnome.desktop.input-sources show-all-sources true
 # Make writing a '~' character not require pressing space (for es ISO keyboards)
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'es+deadtilde')]"
 
+# Set favorite apps
+gsettings set org.gnome.shell favorite-apps "['ghostty.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.Nautilus.desktop', 'firefox.desktop', 'spotify.desktop', 'code.desktop', 'localsend.desktop', 'org.gnome.Settings.desktop']"
+
 # Configure Dock
 gsettings set org.gnome.shell.extensions.dash-to-dock autohide true
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
