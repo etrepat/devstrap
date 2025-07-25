@@ -15,6 +15,7 @@ clear; echo "=> Initializing..."
 for req in ${DEVSTRAP_PATH}/requirements.d/*.sh; do . $req; done
 
 # Installation
+clear; echo -e "\e[33;1mdevstrap\e[0m"
 if gum confirm "This script will bootstrap a freshly installed machine w/several configuration choices. Proceed?"; then
     # Identify user (for git config)
     export DEVSTRAP_USERNAME=$(gum input --placeholder "Enter full name" --prompt "Name> ")
