@@ -5,7 +5,7 @@
 [[ -n "${DEVSTRAP_GNOME_CUSTOMIZE}" && "${DEVSTRAP_GNOME_CUSTOMIZE}" = "y" ]] && return 0
 
 echo "=> Configure GNOME settings & installing extensions..."
-s
+
 yay -Rns --noconfirm gnome-tour
 
 yay -S --noconfirm --needed python-pipx
