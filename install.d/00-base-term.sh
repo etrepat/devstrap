@@ -6,4 +6,4 @@ yay -S --noconfirm --needed ghostty
 
 # Set some defaults
 mkdir -p ~/.config/ghostty
-cp -f "{$DEVSTRAP_PATH}/config/ghostty.conf" ~/.config/ghostty/config
+cp -f "${DEVSTRAP_PATH}/config/ghostty.conf" ~/.config/ghostty/config
