@@ -50,7 +50,8 @@ if [[ -n "${DEVSTRAP_SELECTED_LANGS}" ]]; then
 			;;
 		Ruby)
             echo "=> (mise) Installing latest Ruby..."
-			mise use --global ruby@3.3
+            mise use --global ruby@latest
+            mise settings add idiomatic_version_file_enable_tools ruby
 			;;
 		Rust)
             echo "=> Installing Rust (via rustup)..."
