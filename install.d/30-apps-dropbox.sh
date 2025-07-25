@@ -2,5 +2,5 @@
 # Dropbox
 
 echo "=> Installing Dropbox..."
-yay -S --noconfirm --needed dropbox
+yay -S --noconfirm --needed gpgme python-gpgme dropbox
 # gtk-launch dropbox.desktop
