@@ -33,7 +33,7 @@ if gum confirm "This script will bootstrap a freshly installed machine w/several
     sudo -l > /dev/null
 
     # Update & upgrade packages before installing anything
-    gum spin --title "Upgrading base system (if needed)..." -- yay -Syu > /dev/null
+    gum spin --title "Upgrading base system (if needed)..." -- yay -Syu --noconfirm > /dev/null
 
     # Run installers
     for installer in ${DEVSTRAP_PATH}/install.d/*.sh; do
