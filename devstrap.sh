@@ -3,8 +3,8 @@
 # Exit inmediately
 set -e
 
-# Reset sudo credentials
-sudo -k
+# Expand sudo timeout
+sudo -nv
 
 # Setup
 export DEVSTRAP_TMP="${DEVSTRAP_TMP:-/tmp}"
@@ -31,6 +31,7 @@ if gum confirm "This script will bootstrap a freshly installed machine w/several
     export DEVSTRAP_GNOME_CUSTOMIZE=$(${DEVSTRAP_USING_GNOME} && gum confirm "Apply GNOME theme & customizations (including plugins)?" && echo 'y')
 
     # Ask for password preemtively
+    sudo -nv
     sudo -l > /dev/null
 
     # Update & upgrade packages before installing anything
@@ -38,6 +39,7 @@ if gum confirm "This script will bootstrap a freshly installed machine w/several
 
     # Run installers
     for installer in ${DEVSTRAP_PATH}/install.d/*.sh; do
+        sudo -nv
         . $installer
     done
 fi
@@ -58,3 +60,6 @@ yay -Sc --noconfirm
 yay -Syu --noconfirm
 
 echo "=> All done!"
+
+echo "=> Rebooting system..."
+sudo shutdown -r now
