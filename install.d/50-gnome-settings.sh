@@ -7,7 +7,7 @@
 echo "=> Configure GNOME settings & installing extensions..."
 
 yay -S --noconfirm --needed python-pipx
-pipx install gnome-extensions-cli --system-site-packages
+sudo pipx --global install gnome-extensions-cli --system-site-packages
 
 # Install extensions
 gext install appindicatorsupport@rgcjonas.gmail.com
@@ -145,5 +145,5 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding '<Super>m'
 
 # Remove artifacts
-pipx uninstall gnome-extensions-cli
+sudo pipx uninstall --global gnome-extensions-cli
 yay -Rns --noconfirm python-pipx
