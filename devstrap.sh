@@ -9,7 +9,10 @@ export DEVSTRAP_PATH="${DEVSTRAP_PATH:-${DEVSTRAP_TMP}/devstrap}"
 
 # Bootstrap required tooling
 clear; echo "=> Initializing..."
-for req in ${DEVSTRAP_PATH}/requirements.d/*.sh; do . $req; done
+for req in ${DEVSTRAP_PATH}/requirements.d/*.sh; do
+    sudo -v
+    . $req;
+done
 
 # Installation
 clear; echo -e "\e[33;1mdevstrap\e[0m"
