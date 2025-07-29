@@ -2,8 +2,8 @@
 # DBeaver Community - Free Universal Database Tool
 
 # FIXME
-# This is to install a fully self-contained dbeaver version (Java is already included) and there's no need to install
-# it as a dependency. We should think about removing this script and use an AUR package instead.
+# This is to install a fully self-contained dbeaver version so that Java is included and can coexist with anything
+# installed by the user. We should think about removing this script and use an AUR package instead or provide a PKGBUILD.
 
 echo "=> Installing DBeaver..."
 
