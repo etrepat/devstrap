@@ -2,7 +2,7 @@
 # Set the gnome theme preferences
 
 # Skip if not in gnome or mandated by user...
-[[ -n "${DEVSTRAP_GNOME_CUSTOMIZE}" && "${DEVSTRAP_GNOME_CUSTOMIZE}" = "y" ]] && return 0
+[[ "${DEVSTRAP_GNOME_CUSTOMIZE}" != "y" ]] && return 0
 
 THEME_WALLPAPER="abstract-purple-blue.jpg"
 
