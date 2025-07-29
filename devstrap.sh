@@ -72,6 +72,4 @@ yay -Sc --noconfirm
 yay -Syu --noconfirm
 
 echo "=> All done!"
-
-echo "=> Rebooting system..."
-sudo shutdown -r now
+gum confirm "It is recommended to reboot the system now. Reboot?" && sudo shutdown -r now
