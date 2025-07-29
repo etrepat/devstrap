@@ -3,6 +3,14 @@
 # Exit inmediately
 set -e
 
+# Reset sudo credentials & ask for password preemptively
+sudo -K && sudo -v
+
+# Sudo keep-alive
+(while true; do sudo -nv; sleep 1m; done) &
+export DEVSTRAP_SUDO_KEEPALIVE=$!
+trap 'kill $DEVSTRAP_SUDO_KEEPALIVE' INT TERM EXIT ERR
+
 # Setup
 export DEVSTRAP_TMP="${DEVSTRAP_TMP:-/tmp}"
 export DEVSTRAP_PATH="${DEVSTRAP_PATH:-${DEVSTRAP_TMP}/devstrap}"
@@ -27,10 +35,6 @@ if gum confirm "This script will bootstrap a freshly installed machine w/several
     DEVSTRAP_USING_GNOME=$([[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]] && echo true || echo false)
     export DEVSTRAP_GNOME_CUSTOMIZE=$(${DEVSTRAP_USING_GNOME} && gum confirm "Apply GNOME theme & customizations (including plugins)?" && echo 'y')
 
-    # Reset sudo credentials & ask for password preemptively
-    sudo -K
-    sudo -v
-
     if [ "$DEVSTRAP_USING_GNOME" = true ]; then
         # Ensure computer doesn't go to sleep or lock while installing
         gsettings set org.gnome.desktop.screensaver lock-enabled false
@@ -42,7 +46,6 @@ if gum confirm "This script will bootstrap a freshly installed machine w/several
 
     # Run installers
     for installer in ${DEVSTRAP_PATH}/install.d/*.sh; do
-        sudo -v
         . $installer
     done
 
