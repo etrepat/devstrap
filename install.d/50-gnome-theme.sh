@@ -17,9 +17,11 @@ gsettings set org.gnome.desktop.interface monospace-font-name 'CaskaydiaCove Ner
 
 echo "=> Setting GNOME theme..."
 
+# Prefer dark & accent color
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface accent-color 'purple'
 
+# Wallpaper
 mkdir -p ~/.local/share/wallpapers
 
 if [ ! -f "~/.local/share/wallpapers/${THEME_WALLPAPER}" ]; then
@@ -29,3 +31,11 @@ fi
 gsettings set org.gnome.desktop.background picture-uri "${HOME}/.local/share/wallpapers/${THEME_WALLPAPER}"
 gsettings set org.gnome.desktop.background picture-uri-dark "${HOME}/.local/share/wallpapers/${THEME_WALLPAPER}"
 gsettings set org.gnome.desktop.background picture-options 'zoom'
+
+# Avatar
+sudo cp /usr/share/pixmaps/faces/mountain.jpg /var/lib/AccountsService/icons/$USER
+sudo chmod 644 /var/lib/AccountsService/icons/$USER
+sudo tee /var/lib/AccountsService/users/$USER > /dev/null <<EOF
+[User]
+Icon=/var/lib/AccountsService/icons/$USER
+EOF

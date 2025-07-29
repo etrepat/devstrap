@@ -6,8 +6,6 @@
 
 echo "=> Configure GNOME settings & installing extensions..."
 
-yay -Rns --noconfirm gnome-tour
-
 yay -S --noconfirm --needed python-pipx
 pipx install gnome-extensions-cli --system-site-packages
 
@@ -46,10 +44,11 @@ gsettings set org.gnome.desktop.input-sources show-all-sources true
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'es+deadtilde')]"
 
 # Set favorite apps
-gsettings set org.gnome.shell favorite-apps "['ghostty.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.Nautilus.desktop', 'firefox.desktop', 'spotify.desktop', 'code.desktop', 'localsend.desktop', 'org.gnome.Settings.desktop']"
+gsettings set org.gnome.shell favorite-apps "['com.mitchellh.ghostty.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.Nautilus.desktop', 'firefox.desktop', 'spotify.desktop', 'mpv.desktop', 'code.desktop', 'localsend.desktop', 'org.keepassxc.KeePassXC.desktop', 'org.gnome.Settings.desktop']"
 
 # Configure Dock
 gsettings set org.gnome.shell.extensions.dash-to-dock autohide true
+gsettings set org.gnome.shell.extensions.dash-to-dock require-pressure-to-show false
 gsettings set org.gnome.shell.extensions.dash-to-dock dock-position BOTTOM
 gsettings set org.gnome.shell.extensions.dash-to-dock transparency-mode DYNAMIC
 gsettings set org.gnome.shell.extensions.dash-to-dock dash-max-icon-size 48
@@ -91,6 +90,15 @@ gsettings set org.gnome.shell.extensions.space-bar.shortcuts open-menu "@as []"
 
 # Keybindings
 
+# Open default browser
+gsettings set org.gnome.settings-daemon.plugins.media-keys www "['<Super>b']"
+
+# Home (file manager)
+gsettings set org.gnome.settings-daemon.plugins.media-keys home "['<Super>f']"
+
+# Control center (settings)
+gsettings set org.gnome.settings-daemon.plugins.media-keys control-center "['<Shift><Super>s']"
+
 # Use alt for pinned apps
 gsettings set org.gnome.shell.keybindings switch-to-application-1 "['<Alt>1']"
 gsettings set org.gnome.shell.keybindings switch-to-application-2 "['<Alt>2']"
@@ -111,7 +119,7 @@ gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-5 "['<Super>5
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-6 "['<Super>6']"
 
 # Reserve slots for custom keybindings
-gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys custom-keybindings "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/', '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/']"
 
 # Set albert launcher to Ctrl+Space
 # gsettings set org.gnome.desktop.wm.keybindings switch-input-source "@as []"
@@ -124,11 +132,17 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/or
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ command "$HOME/.local/bin/flameshot-capture.sh"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/ binding '<Control>Print'
 
-# Set kitty to Ctrl+Alt+T & remove default
+# Set Ghostty to Super+Return & remove default
 # gsettings set org.gnome.settings-daemon.plugins.media-keys terminal "@as []"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'Terminal (ghostty)'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'ghostty'
-gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding '<Control><Alt>t'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding '<Super>Return'
+
+# Set spotify to Super+M
+gsettings set org.gnome.shell.keybindings toggle-message-tray "['<Super>v']"
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ name 'Spotify'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command 'spotify'
+gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding '<Super>m'
 
 # Remove artifacts
 pipx uninstall gnome-extensions-cli
