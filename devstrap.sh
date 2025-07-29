@@ -3,9 +3,6 @@
 # Exit inmediately
 set -e
 
-# Expand sudo timeout
-sudo -nv
-
 # Setup
 export DEVSTRAP_TMP="${DEVSTRAP_TMP:-/tmp}"
 export DEVSTRAP_PATH="${DEVSTRAP_PATH:-${DEVSTRAP_TMP}/devstrap}"
@@ -30,16 +27,15 @@ if gum confirm "This script will bootstrap a freshly installed machine w/several
     DEVSTRAP_USING_GNOME=$([[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]] && echo true || echo false)
     export DEVSTRAP_GNOME_CUSTOMIZE=$(${DEVSTRAP_USING_GNOME} && gum confirm "Apply GNOME theme & customizations (including plugins)?" && echo 'y')
 
-    # Ask for password preemtively
-    sudo -nv
-    sudo -l > /dev/null
+    # Ask for password preemtively (if needed)
+    sudo -v
 
     # Update & upgrade packages before installing anything
     gum spin --title "Upgrading base system (if needed)..." -- yay -Syu --noconfirm > /dev/null
 
     # Run installers
     for installer in ${DEVSTRAP_PATH}/install.d/*.sh; do
-        sudo -nv
+        sudo -v
         . $installer
     done
 fi
