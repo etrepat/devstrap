@@ -3,6 +3,6 @@
 
 echo "=> Installing terminal utilities..."
 
-yay -Rns --noconfirm htop
+yay -Qq htop && yay -Rns --noconfirm htop
 
 yay -S --needed --noconfirm bat btop eza fastfetch fd fzf jq tldr
