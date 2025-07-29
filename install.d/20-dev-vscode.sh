@@ -26,12 +26,10 @@ if [[ -n "$DEVSTRAP_SELECTED_LANGS" && " $DEVSTRAP_SELECTED_LANGS " =~ [[:space:
     code --install-extension golang.go
 fi
 
-
 # PHP (Intelephense)
 if [[ -n "$DEVSTRAP_SELECTED_LANGS" && " $DEVSTRAP_SELECTED_LANGS " =~ [[:space:]]PHP[[:space:]] ]]; then
     code --install-extension bmewburn.vscode-intelephense-client
 fi
-
 
 # Rust analyzer
 if [[ -n "$DEVSTRAP_SELECTED_LANGS" && " $DEVSTRAP_SELECTED_LANGS " =~ [[:space:]]Rust[[:space:]] ]]; then
