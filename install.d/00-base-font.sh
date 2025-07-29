@@ -2,7 +2,7 @@
 # Download & install fonts
 
 echo "=> Installing fonts..."
-yay -S --noconfirm --needed ttf-font-awesome noto-fonts noto-fonts-emoji noto-fonts-extra
+yay -S --noconfirm --needed otf-font-awesome noto-fonts noto-fonts-emoji noto-fonts-extra
 
 echo "=> Installing 'CaskaydiaCove Nerd Font'..."
 if ! $(fc-list | grep -i "CaskaydiaCove" > /dev/null); then
