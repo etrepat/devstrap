@@ -9,10 +9,7 @@ export DEVSTRAP_PATH="${DEVSTRAP_PATH:-${DEVSTRAP_TMP}/devstrap}"
 
 # Bootstrap required tooling
 clear; echo "=> Initializing..."
-for req in ${DEVSTRAP_PATH}/requirements.d/*.sh; do
-    sudo -v
-    . $req;
-done
+for req in ${DEVSTRAP_PATH}/requirements.d/*.sh; do . $req; done
 
 # Installation
 clear; echo -e "\e[33;1mdevstrap\e[0m"
@@ -30,8 +27,15 @@ if gum confirm "This script will bootstrap a freshly installed machine w/several
     DEVSTRAP_USING_GNOME=$([[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]] && echo true || echo false)
     export DEVSTRAP_GNOME_CUSTOMIZE=$(${DEVSTRAP_USING_GNOME} && gum confirm "Apply GNOME theme & customizations (including plugins)?" && echo 'y')
 
-    # Ask for password preemtively (if needed)
+    # Reset sudo credentials & ask for password preemptively
+    sudo -K
     sudo -v
+
+    if [ "$DEVSTRAP_USING_GNOME" = true ]; then
+        # Ensure computer doesn't go to sleep or lock while installing
+        gsettings set org.gnome.desktop.screensaver lock-enabled false
+        gsettings set org.gnome.desktop.session idle-delay 0
+    fi
 
     # Update & upgrade packages before installing anything
     gum spin --title "Upgrading base system (if needed)..." -- yay -Syu --noconfirm > /dev/null
@@ -41,6 +45,12 @@ if gum confirm "This script will bootstrap a freshly installed machine w/several
         sudo -v
         . $installer
     done
+
+    if [ "$DEVSTRAP_USING_GNOME" = true ]; then
+        # Revert to normal idle and lock settings
+        gsettings set org.gnome.desktop.screensaver lock-enabled true
+        gsettings set org.gnome.desktop.session idle-delay 300
+    fi
 fi
 
 echo "=> Removing artifacts..."
