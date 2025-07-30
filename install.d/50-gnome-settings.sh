@@ -150,7 +150,3 @@ gsettings set org.gnome.shell.keybindings toggle-message-tray "['<Super>v']"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ name 'Spotify'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ command 'spotify'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3/ binding '<Super>m'
-
-# Remove artifacts
-pipx uninstall gnome-extensions-cli
-yay -Rns --noconfirm python-pipx
