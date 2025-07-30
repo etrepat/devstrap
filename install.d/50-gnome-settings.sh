@@ -1,7 +1,7 @@
 # Set the gnome settings, extensions & hotkeys
 
 # Skip if not in gnome or mandated by user...
-[[ -n "${DEVSTRAP_GNOME_CUSTOMIZE}" && "${DEVSTRAP_GNOME_CUSTOMIZE}" = "y" ]] && return 0
+[[ "${DEVSTRAP_GNOME_CUSTOMIZE}" != "y" ]] && return 0
 
 echo "=> Configure GNOME settings & installing extensions..."
 
@@ -18,6 +18,7 @@ gext install caffeine@patapon.info
 gext install Vitals@CoreCoding.com
 gext install blur-my-shell@aunetx
 gext install space-bar@luchrioh
+gext install AlphabeticalAppGrid@stuarthayhurst
 
 # Compile gsettings schemas in order to be able to set them
 sudo cp ~/.local/share/gnome-shell/extensions/tactile@lundal.io/schemas/org.gnome.shell.extensions.tactile.gschema.xml /usr/share/glib-2.0/schemas/
@@ -25,6 +26,7 @@ sudo cp ~/.local/share/gnome-shell/extensions/caffeine@patapon.info/schemas/org.
 sudo cp ~/.local/share/gnome-shell/extensions/Vitals@CoreCoding.com/schemas/org.gnome.shell.extensions.vitals.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/blur-my-shell\@aunetx/schemas/org.gnome.shell.extensions.blur-my-shell.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/space-bar\@luchrioh/schemas/org.gnome.shell.extensions.space-bar.gschema.xml /usr/share/glib-2.0/schemas/
+sudo cp ~/.local/share/gnome-shell/extensions/AlphabeticalAppGrid\@stuarthayhurst/schemas/org.gnome.shell.extensions.AlphabeticalAppGrid.gschema.xml /usr/share/glib-2.0/schemas/
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
 # Set default terminal application
@@ -77,6 +79,9 @@ gsettings set org.gnome.shell.extensions.space-bar.shortcuts enable-activate-wor
 gsettings set org.gnome.shell.extensions.space-bar.shortcuts enable-move-to-workspace-shortcuts true
 gsettings set org.gnome.shell.extensions.space-bar.shortcuts open-menu "@as []"
 
+# Configure AlphabeticalAppGrid
+gsettings set org.gnome.shell.extensions.alphabetical-app-grid folder-order-position 'end'
+
 # Keybindings
 
 # Use alt for pinned apps
@@ -117,7 +122,3 @@ gsettings set org.gnome.settings-daemon.plugins.media-keys terminal "@as []"
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ name 'Terminal (kitty)'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ command 'kitty'
 gsettings set org.gnome.settings-daemon.plugins.media-keys.custom-keybinding:/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/ binding '<Control><Alt>t'
-
-# Remove artifacts
-pipx uninstall gnome-extensions-cli
-sudo apt-get autoremove --purge -y pipx

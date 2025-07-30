@@ -3,8 +3,13 @@
 # Exit inmediately
 set -e
 
-# Reset sudo credentials
-sudo -k
+# Reset sudo credentials & ask for password preemptively
+sudo -K && sudo -v
+
+# Sudo keep-alive
+(while true; do sudo -nv; sleep 1m; done) &
+export DEVSTRAP_SUDO_KEEPALIVE=$!
+trap 'kill $DEVSTRAP_SUDO_KEEPALIVE' INT TERM EXIT ERR
 
 # Setup
 export DEVSTRAP_TMP="${DEVSTRAP_TMP:-/tmp}"
@@ -29,10 +34,13 @@ if ${DEVSTRAP_GUM} confirm "This script will bootstrap a freshly installed machi
 
     # Ask the user it it wants to apply GNOME settings & customizations (if using gnome) ?
     DEVSTRAP_USING_GNOME=$([[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]] && echo true || echo false)
-    export DEVSTRAP_GNOME_CUSTOMIZE=$(${DEVSTRAP_USING_GNOME} && ${DEVSTRAP_GUM} confirm "Apply GNOME theme & customizations (including plugins)?" && echo 'y')
+    export DEVSTRAP_GNOME_CUSTOMIZE=$(${DEVSTRAP_USING_GNOME} && ${DEVSTRAP_GUM} confirm "Apply GNOME theme & customizations (including extensions)?" && echo 'y')
 
-    # Ask for password preemtively
-    sudo -l > /dev/null
+    if [ "$DEVSTRAP_USING_GNOME" = true ]; then
+        # Ensure computer doesn't go to sleep or lock while installing
+        gsettings set org.gnome.desktop.screensaver lock-enabled false
+        gsettings set org.gnome.desktop.session idle-delay 0
+    fi
 
     # Update & upgrade packages before installing anything
     ${DEVSTRAP_GUM} spin --title "Updating package dbs..." -- sudo apt-get update > /dev/null
@@ -42,6 +50,12 @@ if ${DEVSTRAP_GUM} confirm "This script will bootstrap a freshly installed machi
     for installer in ${DEVSTRAP_PATH}/install.d/*.sh; do
         . $installer
     done
+
+    if [ "$DEVSTRAP_USING_GNOME" = true ]; then
+        # Revert to normal idle and lock settings
+        gsettings set org.gnome.desktop.screensaver lock-enabled true
+        gsettings set org.gnome.desktop.session idle-delay 300
+    fi
 fi
 
 echo "=> Removing artifacts..."

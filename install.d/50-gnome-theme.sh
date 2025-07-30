@@ -1,7 +1,7 @@
 # Set the gnome theme preferences
 
 # Skip if not in gnome or mandated by user...
-[[ -n "${DEVSTRAP_GNOME_CUSTOMIZE}" && "${DEVSTRAP_GNOME_CUSTOMIZE}" = "y" ]] && return 0
+[[ "${DEVSTRAP_GNOME_CUSTOMIZE}" != "y" ]] && return 0
 
 echo "=> Setting GNOME fonts..."
 
@@ -32,3 +32,11 @@ fi
 gsettings set org.gnome.desktop.background picture-uri ${WALLPAPER_PATH}
 gsettings set org.gnome.desktop.background picture-uri-dark ${WALLPAPER_PATH}
 gsettings set org.gnome.desktop.background picture-options 'zoom'
+
+# Avatar
+sudo cp /usr/share/pixmaps/faces/mountain.jpg /var/lib/AccountsService/icons/$USER
+sudo chmod 644 /var/lib/AccountsService/icons/$USER
+sudo tee /var/lib/AccountsService/users/$USER > /dev/null <<EOF
+[User]
+Icon=/var/lib/AccountsService/icons/$USER
+EOF
