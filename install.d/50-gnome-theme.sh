@@ -21,6 +21,10 @@ echo "=> Setting GNOME theme..."
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface accent-color 'purple'
 
+# Icon theme
+yay -S papirus-icon-theme
+gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
+
 # Wallpaper
 mkdir -p ~/.local/share/wallpapers
 
