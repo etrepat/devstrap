@@ -33,7 +33,7 @@ if gum confirm "This script will bootstrap a freshly installed machine w/several
 
     # Ask the user it it wants to apply GNOME settings & customizations (if using gnome) ?
     DEVSTRAP_USING_GNOME=$([[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]] && echo true || echo false)
-    export DEVSTRAP_GNOME_CUSTOMIZE=$(${DEVSTRAP_USING_GNOME} && gum confirm "Apply GNOME theme & customizations (including plugins)?" && echo 'y')
+    export DEVSTRAP_GNOME_CUSTOMIZE=$(${DEVSTRAP_USING_GNOME} && gum confirm "Apply GNOME theme & customizations (including extensions)?" && echo 'y')
 
     if [ "$DEVSTRAP_USING_GNOME" = true ]; then
         # Ensure computer doesn't go to sleep or lock while installing
