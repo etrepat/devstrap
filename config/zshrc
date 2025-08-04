@@ -1,0 +1,63 @@
+# Do not use default powerline
+# USE_POWERLINE="true"
+
+# Source manjaro-zsh-configuration
+if [[ -e /usr/share/zsh/manjaro-zsh-config ]]; then
+  source /usr/share/zsh/manjaro-zsh-config
+fi
+
+# Load auto-suggestions
+if [[ -e /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]];then
+  source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+
+# Default editor
+EDITOR=vim
+export EDITOR
+
+# Aliases
+if [ -f ~/.bash_aliases ]; then
+    source ~/.bash_aliases
+fi
+
+# mise
+if command -v mise &> /dev/null; then
+    eval "$(mise activate zsh)"
+fi
+
+# Path manipulations
+
+# Rust
+if [ -d "$HOME/.cargo/bin" ]; then
+    PATH=("$HOME/.cargo/bin" $PATH)
+fi
+
+# TODO: Add other languages or runtimes here
+
+if [ -d "$HOME/.local/bin" ]; then
+    PATH=("$HOME/.local/bin" $PATH)
+fi
+
+if [ -d "$HOME/bin" ]; then
+    PATH=("$HOME/bin" $PATH)
+fi
+
+export PATH
+
+## --
+
+# fzf default key bindings
+if command -v fzf &> /dev/null; then
+    if [ -f /usr/share/fzf/completion.bash ]; then
+        source /usr/share/fzf/completion.zsh
+    fi
+
+    if [ -f /usr/share/fzf/key-bindings.bash ]; then
+        source /usr/share/fzf/key-bindings.zsh
+    fi
+fi
+
+# Starship.rs
+if command -v starship &> /dev/null; then
+    eval "$(starship init zsh)"
+fi
