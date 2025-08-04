@@ -11,24 +11,22 @@ mkdir -p ~/.local/bin
 export PATH="$HOME/.local/bin:$PATH"
 pipx install gnome-extensions-cli --system-site-packages
 
+# Disable un-needed extensions
+gext disable legacyschemeautoswitcher@joshimukul29.gmail.com
+
 # Install extensions
-gext install appindicatorsupport@rgcjonas.gmail.com
-gext install dash-to-dock@micxgx.gmail.com
+gext enable space-bar@luchrioh
 gext install tactile@lundal.io
 gext install caffeine@patapon.info
 gext install Vitals@CoreCoding.com
 gext install blur-my-shell@aunetx
-gext install space-bar@luchrioh
 gext install AlphabeticalAppGrid@stuarthayhurst
 
 # Compile gsettings schemas in order to be able to set them
-sudo cp ~/.local/share/gnome-shell/extensions/appindicatorsupport\@rgcjonas.gmail.com/schemas/org.gnome.shell.extensions.appindicator.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/org.gnome.shell.extensions.dash-to-dock.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/tactile@lundal.io/schemas/org.gnome.shell.extensions.tactile.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/caffeine@patapon.info/schemas/org.gnome.shell.extensions.caffeine.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/Vitals@CoreCoding.com/schemas/org.gnome.shell.extensions.vitals.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/blur-my-shell\@aunetx/schemas/org.gnome.shell.extensions.blur-my-shell.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/space-bar\@luchrioh/schemas/org.gnome.shell.extensions.space-bar.gschema.xml /usr/share/glib-2.0/schemas/
 sudo cp ~/.local/share/gnome-shell/extensions/AlphabeticalAppGrid\@stuarthayhurst/schemas/org.gnome.shell.extensions.AlphabeticalAppGrid.gschema.xml /usr/share/glib-2.0/schemas/
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
 
@@ -93,7 +91,7 @@ gsettings set org.gnome.shell.extensions.space-bar.shortcuts enable-move-to-work
 gsettings set org.gnome.shell.extensions.space-bar.shortcuts open-menu "@as []"
 
 # Configure AlphabeticalAppGrid
-gsettings set org.gnome.shell.extensions.alphabetical-app-grid folder-order-position 'end'
+gsettings set org.gnome.shell.extensions.alphabetical-app-grid folder-order-position 'start'
 
 # Keybindings
 

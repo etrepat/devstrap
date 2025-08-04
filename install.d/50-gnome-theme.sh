@@ -9,7 +9,7 @@ THEME_WALLPAPER="abstract-purple-blue.jpg"
 echo "=> Setting GNOME fonts..."
 
 # Set Noto Sans as the default font
-gsettings set org.gnome.desktop.interface font-name 'Noto Sans 11'
+# gsettings set org.gnome.desktop.interface font-name 'Noto Sans 11'
 gsettings set org.gnome.desktop.interface document-font-name 'Noto Sans 11'
 
 # Set Cascadia Mono as the default monospace font
@@ -20,10 +20,6 @@ echo "=> Setting GNOME theme..."
 # Prefer dark & accent color
 gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface accent-color 'purple'
-
-# Icon theme
-yay -S papirus-icon-theme
-gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
 
 # Wallpaper
 mkdir -p ~/.local/share/wallpapers
