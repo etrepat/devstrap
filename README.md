@@ -1,33 +1,35 @@
-# DevStrap - Arch Linux (x64, GNOME desktop)
+# DevStrap - Manjaro (x64, GNOME desktop)
 
-DevStrap is a bash script that rapidly sets up a fresh Arch (GNOME desktop) system with a fully-configured development environment.
+DevStrap is a bash script that rapidly sets up a fresh Manjaro (GNOME desktop) system with a fully-configured development environment.
 
 ## ✅ Compatibility
 
-DevStrap currently supports the following 64-bit Linux distributions. Each version is maintained in its own branch 
+DevStrap currently supports the following 64-bit Linux distributions. Each version is maintained in its own branch
 with a dedicated installation script. **We strongly recommend reviewing the script before executing it on your system.**
 
-* **Arch Linux (x64, GNOME desktop)**
-    → [View installation script](https://github.com/etrepat/devstrap/tree/archlinux/install.sh)
-    → [Go to the `archlinux` branch](https://github.com/etrepat/devstrap/tree/archlinux)
-* Ubuntu 24.04 LTS (Jammy Jellyfish) 
+* Ubuntu 24.04 LTS (Jammy Jellyfish)
     → [View installation script](https://github.com/etrepat/devstrap/tree/ubuntu/install.sh)
     → [Go to the `ubuntu` branch](https://github.com/etrepat/devstrap/tree/ubuntu)
+* Arch Linux (x64, GNOME desktop)
+    → [View installation script](https://github.com/etrepat/devstrap/tree/archlinux/install.sh)
+    → [Go to the `archlinux` branch](https://github.com/etrepat/devstrap/tree/archlinux)
+* **Manjaro (x64, GNOME desktop)**
+    → [View installation script](https://github.com/etrepat/devstrap/tree/manjaro/install.sh)
+    → [Go to the `manjaro` branch](https://github.com/etrepat/devstrap/tree/manjaro)
 
 ## 🚀 Installation
 
-1. Download the latest [Arch Linux ISO](https://archlinux.org/download/) and boot into it.
-2. Run `archinstall`, selecting the **Desktop profile** and choosing **GNOME** as the desktop environment. Feel free to 
-customize the installation as needed.
+1. Download the latest [Manjaro GNOME ISO](https://manjaro.org/products/download/x86) and boot into it.
+2. Perform the installation process. Feel free to customize the installation as needed.
 3. Once the system is installed and running, open a terminal and execute:
 
 ```bash
-curl -sSf 'https://raw.githubusercontent.com/etrepat/devstrap/archlinux/install.sh' | bash
+curl -sSf 'https://raw.githubusercontent.com/etrepat/devstrap/manjaro/install.sh' | bash
 ```
 
 ## 🛠 What It Does
 
-DevStrap automates the process of turning a clean Linux installation into a well-equipped development machine. It 
+DevStrap automates the process of turning a clean Linux installation into a well-equipped development machine. It
 applies a number of opinionated configurations and installs a curated set of tools and applications.
 
 ### Included by default
