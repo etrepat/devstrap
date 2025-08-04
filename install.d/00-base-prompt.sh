@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Use starship.rs for prompt support
 
 echo "=> Installing Starship.rs..."

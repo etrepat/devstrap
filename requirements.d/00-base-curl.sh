@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Curl
 
 if ! command -v curl &> /dev/null; then

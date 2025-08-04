@@ -1,4 +1,5 @@
-# Set common git aliases
+#!/usr/bin/env bash
+# Set base git config
 
 echo "=> Applying some git config..."
 

@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Visual Studio Code
 
 echo "=> Install Visual Studio Code..."

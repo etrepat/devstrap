@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # btop
 
 echo "=> Installing command-line utilities..."

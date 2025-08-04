@@ -1,4 +1,6 @@
- # Download & install fonts
+#!/usr/bin/env bash
+
+# Download & install fonts
 
 echo "=> Installing 'CaskaydiaCove Nerd Font'..."
 if ! $(fc-list | grep -i "CaskaydiaCove" > /dev/null); then

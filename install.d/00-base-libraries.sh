@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Install base packages & libraries
 
 echo "=> Installing base packages & libraries..."

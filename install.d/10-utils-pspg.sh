@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # pspg - Postgres Pager
 # https://github.com/okbob/pspg
 

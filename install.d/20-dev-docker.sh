@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Docker
 
 echo "=> Installing Docker Engine..."

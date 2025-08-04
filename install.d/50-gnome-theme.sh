@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Set the gnome theme preferences
 
 # Skip if not in gnome or mandated by user...

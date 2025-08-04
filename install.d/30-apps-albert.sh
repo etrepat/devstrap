@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Albert launcher
 # https://albertlauncher.github.io/
 

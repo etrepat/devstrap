@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Terminal
 # These days I like to use kitty as a terminal with a modern feature set...
 #

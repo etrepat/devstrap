@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Gum is used as TUI frontend for confirmations, option selection & messaging
 # Download an install a suitable version to use from now on...
 

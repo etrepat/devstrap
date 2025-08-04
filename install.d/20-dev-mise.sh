@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Mise for managing multiple versions of languages
 # https://mise.jdx.dev/
 

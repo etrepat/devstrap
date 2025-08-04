@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Spotify
 
 echo "=> Installing Spotify for Linux..."

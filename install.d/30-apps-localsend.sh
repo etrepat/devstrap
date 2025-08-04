@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # localsend - Share files to nearby devices.
 # https://localsend.org/
 

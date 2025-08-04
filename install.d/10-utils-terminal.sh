@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Use command-line utilities
 
 echo "=> Installing command-line utilities..."

@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Google Chrome
 
 echo "=> Installing Google Chrome..."

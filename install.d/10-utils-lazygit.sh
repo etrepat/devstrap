@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # lazygit - simple terminal UI for git commands
 # https://github.com/jesseduffield/lazygit
 

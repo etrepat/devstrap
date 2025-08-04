@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Install selected programming languages
 
 if [[ ! -v DEVSTRAP_SELECTED_LANGS ]]; then

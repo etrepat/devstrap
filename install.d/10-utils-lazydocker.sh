@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # lazydocker -  The lazier way to manage everything docker
 # https://github.com/jesseduffield/lazydocker
 

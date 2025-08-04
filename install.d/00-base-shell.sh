@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # Copy bash config
 
 echo "=> Copying bash settings (~/.bashrc)..."
