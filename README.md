@@ -7,15 +7,15 @@ DevStrap is a bash script that rapidly sets up a fresh Manjaro (GNOME desktop) s
 DevStrap currently supports the following 64-bit Linux distributions. Each version is maintained in its own branch
 with a dedicated installation script. **We strongly recommend reviewing the script before executing it on your system.**
 
-* Ubuntu 24.04 LTS (Jammy Jellyfish)
-    → [View installation script](https://github.com/etrepat/devstrap/tree/ubuntu/install.sh)
-    → [Go to the `ubuntu` branch](https://github.com/etrepat/devstrap/tree/ubuntu)
-* Arch Linux (x64, GNOME desktop)
-    → [View installation script](https://github.com/etrepat/devstrap/tree/archlinux/install.sh)
-    → [Go to the `archlinux` branch](https://github.com/etrepat/devstrap/tree/archlinux)
 * **Manjaro (x64, GNOME desktop)**
     → [View installation script](https://github.com/etrepat/devstrap/tree/manjaro/install.sh)
     → [Go to the `manjaro` branch](https://github.com/etrepat/devstrap/tree/manjaro)
+* Arch Linux (x64, GNOME desktop)
+    → [View installation script](https://github.com/etrepat/devstrap/tree/archlinux/install.sh)
+    → [Go to the `archlinux` branch](https://github.com/etrepat/devstrap/tree/archlinux)
+* Ubuntu 24.04 LTS (Jammy Jellyfish)
+    → [View installation script](https://github.com/etrepat/devstrap/tree/ubuntu/install.sh)
+    → [Go to the `ubuntu` branch](https://github.com/etrepat/devstrap/tree/ubuntu)
 
 ## 🚀 Installation
 
