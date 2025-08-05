@@ -10,6 +10,6 @@
 
 echo "=> Installing DBeaver..."
 
-cd ${DEVSTRAP_TMP}/pkg/dbeaver
+cd ${DEVSTRAP_PATH}/pkg/dbeaver
 makepkg -si --noconfirm
 cd -
