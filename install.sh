@@ -5,13 +5,12 @@ DEVSTRAP_TMP=/tmp
 DEVSTRAP_PATH="${DEVSTRAP_TMP}/devstrap"
 DEVSTRAP_GUM="${DEVSTRAP_GUM:-${DEVSTRAP_GUM}/gum}"
 
-clear
-echo -e "\e[33;1mdevstrap\e[0m"
+clear; echo -e "\n\e[36;1mdevstrap\e[0m\n"
 
-echo "=> Cloning devstrap scripts..."
+echo -e "\e[33;1m~>\e[0m Cloning devstrap scripts..."
 if ! command -v git &> /dev/null; then sudo apt-get install -y git > /dev/null; fi
 [ -d "${DEVSTRAP_PATH}" ] && rm -fr ${DEVSTRAP_PATH}
 git clone -b ubuntu https://github.com/etrepat/devstrap.git ${DEVSTRAP_PATH} > /dev/null
 
-echo "=> Starting install..."
+echo -e "\e[33;1m~>\e[0m Starting install..."
 . ${DEVSTRAP_PATH}/devstrap.sh

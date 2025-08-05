@@ -16,12 +16,22 @@ export DEVSTRAP_TMP="${DEVSTRAP_TMP:-/tmp}"
 export DEVSTRAP_PATH="${DEVSTRAP_PATH:-${DEVSTRAP_TMP}/devstrap}"
 export DEVSTRAP_GUM="${DEVSTRAP_GUM:-${DEVSTRAP_TMP}/gum}"
 
+# Inform on if something failed
+error_handler() {
+    echo -e "\e[31;1mInstall failed\e[0m"
+    echo -e "You may run the install scripts individually or retry by running: \e[33;1m$DEVSTRAP_PATH/install.sh\e[0m"
+}
+trap error_handler ERR
+
+# Perform os-specific checks here
+. ${DEVSTRAP_PATH}/os-checks.sh
+
 # Bootstrap required tooling
-clear; echo "=> Initializing..."
+echo -e "\e[33;1m~>\e[0m Initializing..."
 for req in ${DEVSTRAP_PATH}/requirements.d/*.sh; do . $req; done
 
 # Installation
-clear; echo -e "\e[33;1mdevstrap\e[0m"
+clear; echo -e "\n\e[36;1mdevstrap\e[0m\n"
 if ${DEVSTRAP_GUM} confirm "This script will bootstrap a freshly installed machine w/several configuration choices. Proceed?"; then
     # Identify user (for git config)
     export DEVSTRAP_USERNAME=$(${DEVSTRAP_GUM} input --placeholder "Enter full name" --prompt "Name> ")
@@ -44,7 +54,7 @@ if ${DEVSTRAP_GUM} confirm "This script will bootstrap a freshly installed machi
 
     # Update & upgrade packages before installing anything
     ${DEVSTRAP_GUM} spin --title "Updating package dbs..." -- sudo apt-get update > /dev/null
-    ${DEVSTRAP_GUM} spin --title "Applying pending upgrades..." -- sudo apt-get upgrade -y > /dev/null
+    ${DEVSTRAP_GUM} spin --title "Applying pending upgrades. This may take a while..." -- sudo apt-get upgrade -y > /dev/null
 
     # Run installers
     for installer in ${DEVSTRAP_PATH}/install.d/*.sh; do
