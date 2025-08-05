@@ -4,17 +4,41 @@ DevStrap is a bash script that rapidly sets up a fresh Linux system with a fully
 
 ## ✅ Compatibility
 
-DevStrap currently supports the following 64-bit Linux distributions. Each version is maintained in its own branch 
+DevStrap currently supports the following 64-bit Linux distributions. Each version is maintained in its own branch
 with a dedicated installation script. **We strongly recommend reviewing the script before executing it on your system.**
 
-* Ubuntu 24.04 LTS (Jammy Jellyfish) 
-    → [View installation script](https://github.com/etrepat/devstrap/tree/ubuntu/install.sh)
-    → [Go to the `ubuntu` branch](https://github.com/etrepat/devstrap/tree/ubuntu)
 * Arch Linux (x64, GNOME desktop)
     → [View installation script](https://github.com/etrepat/devstrap/tree/archlinux/install.sh)
     → [Go to the `archlinux` branch](https://github.com/etrepat/devstrap/tree/archlinux)
+* Manjaro (x64, GNOME desktop)
+    → [View installation script](https://github.com/etrepat/devstrap/tree/manjaro/install.sh)
+    → [Go to the `manjaro` branch](https://github.com/etrepat/devstrap/tree/manjaro)
+* Ubuntu 24.04 LTS (Jammy Jellyfish)
+    → [View installation script](https://github.com/etrepat/devstrap/tree/ubuntu/install.sh)
+    → [Go to the `ubuntu` branch](https://github.com/etrepat/devstrap/tree/ubuntu)
 
 ## 🚀 Installation
+
+### Arch Linux (x64, GNOME Desktop)
+
+1. Download the latest [Arch Linux ISO](https://archlinux.org/download/) and boot into it.
+2. Run `archinstall`, selecting the **Desktop profile** and choosing **GNOME** as the desktop environment. Feel free to
+customize the installation as needed.
+3. Once the system is installed and running, open a terminal and execute:
+
+```bash
+curl -sSf 'https://raw.githubusercontent.com/etrepat/devstrap/archlinux/install.sh' | bash
+```
+
+### Manjaro (x64, GNOME Desktop)
+
+1. Download the latest [Manjaro Linux ISO (GNOME Desktop)](https://manjaro.org/products/download/x86) and boot into it.
+2. Run the install process. Feel free to customize the installation as needed.
+3. Once the system is installed and running, open a terminal and execute:
+
+```bash
+curl -sSf 'https://raw.githubusercontent.com/etrepat/devstrap/archlinux/install.sh' | bash
+```
 
 ### Ubuntu 24.04 LTS (x64)
 
@@ -25,20 +49,9 @@ with a dedicated installation script. **We strongly recommend reviewing the scri
 curl -sSf 'https://raw.githubusercontent.com/etrepat/devstrap/ubuntu/install.sh' | bash
 ```
 
-### Arch Linux (x64, GNOME Desktop)
-
-1. Download the latest [Arch Linux ISO](https://archlinux.org/download/) and boot into it.
-2. Run `archinstall`, selecting the **Desktop profile** and choosing **GNOME** as the desktop environment. Feel free to 
-customize the installation as needed.
-3. Once the system is installed and running, open a terminal and execute:
-
-```bash
-curl -sSf 'https://raw.githubusercontent.com/etrepat/devstrap/archlinux/install.sh' | bash
-```
-
 ## 🛠 What It Does
 
-DevStrap automates the process of turning a clean Linux installation into a well-equipped development machine. It 
+DevStrap automates the process of turning a clean Linux installation into a well-equipped development machine. It
 applies a number of opinionated configurations and installs a curated set of tools and applications.
 
 ### Included by default
