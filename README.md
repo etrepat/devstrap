@@ -19,7 +19,7 @@ with a dedicated installation script. **We strongly recommend reviewing the scri
 
 ## 🚀 Installation
 
-1. Download the latest [Manjaro GNOME ISO](https://manjaro.org/products/download/x86) and boot into it.
+1. Download the latest [Manjaro Linux GNOME ISO](https://manjaro.org/products/download/x86) and boot into it.
 2. Perform the installation process. Feel free to customize the installation as needed.
 3. Once the system is installed and running, open a terminal and execute:
 
