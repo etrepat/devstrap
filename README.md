@@ -37,7 +37,7 @@ curl -sSf 'https://raw.githubusercontent.com/etrepat/devstrap/archlinux/install.
 3. Once the system is installed and running, open a terminal and execute:
 
 ```bash
-curl -sSf 'https://raw.githubusercontent.com/etrepat/devstrap/archlinux/install.sh' | bash
+curl -sSf 'https://raw.githubusercontent.com/etrepat/devstrap/manjaro/install.sh' | bash
 ```
 
 ### Ubuntu 24.04 LTS (x64)
