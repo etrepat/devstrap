@@ -2,7 +2,7 @@
 
 # DBeaver Community - Free Universal Database Tool
 # We install a custom-made aur package (pkgbuild) so that it can be installed
-# in a self-contained way, with its own JDK.
+# self-contained, with its own JDK.
 
 echo "=> Installing DBeaver..."
 
