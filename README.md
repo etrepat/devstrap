@@ -32,8 +32,8 @@ curl -sSf 'https://raw.githubusercontent.com/etrepat/devstrap/archlinux/install.
 
 ### Manjaro (x64, GNOME Desktop)
 
-1. Download the latest [Manjaro Linux ISO (GNOME Desktop)](https://manjaro.org/products/download/x86) and boot into it.
-2. Run the install process. Feel free to customize the installation as needed.
+1. Download the latest [Manjaro Linux GNOME ISO](https://manjaro.org/products/download/x86) and boot into it.
+2. Perform the installation process. Feel free to customize the installation as needed.
 3. Once the system is installed and running, open a terminal and execute:
 
 ```bash
