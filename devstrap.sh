@@ -15,12 +15,22 @@ trap 'kill $DEVSTRAP_SUDO_KEEPALIVE' INT TERM EXIT ERR
 export DEVSTRAP_TMP="${DEVSTRAP_TMP:-/tmp}"
 export DEVSTRAP_PATH="${DEVSTRAP_PATH:-${DEVSTRAP_TMP}/devstrap}"
 
+# Inform on if something failed
+error_handler() {
+    echo -e "\e[31;1mInstall failed\e[0m"
+    echo -e "You may run the install scripts individually or retry by running: \e[33;1m$DEVSTRAP_PATH/install.sh\e[0m"
+}
+trap error_handler ERR
+
+# Perform os-specific checks here
+. ${DEVSTRAP_PATH}/os-checks.sh
+
 # Bootstrap required tooling
-clear; echo "=> Initializing..."
+echo -e "\e[33;1m~>\e[0m Initializing..."
 for req in ${DEVSTRAP_PATH}/requirements.d/*.sh; do . $req; done
 
 # Installation
-clear; echo -e "\e[33;1mdevstrap\e[0m"
+clear; echo -e "\n\e[36;1mdevstrap\e[0m\n"
 if gum confirm "This script will bootstrap a freshly installed machine w/several configuration choices. Proceed?"; then
     # Identify user (for git config)
     export DEVSTRAP_USERNAME=$(gum input --placeholder "Enter full name" --prompt "Name> ")
@@ -56,7 +66,7 @@ if gum confirm "This script will bootstrap a freshly installed machine w/several
     fi
 fi
 
-echo "=> Removing artifacts..."
+echo -e "\e[33;1m~>\e[0m Removing artifacts..."
 rm -fr ${DEVSTRAP_PATH}
 
 unset DEVSTRAP_GNOME_CUSTOMIZE
@@ -66,10 +76,10 @@ unset DEVSTRAP_USERNAME
 unset DEVSTRAP_PATH
 unset DEVSTRAP_TMP
 
-echo "=> Doing cleanup..."
+echo -e "\e[33;1m~>\e[0m Doing cleanup..."
 yay -Rns --noconfirm $(yay -Qdtq)
 yay -Sc --noconfirm
 yay -Syu --noconfirm
 
-echo "=> All done!"
+echo -e "\e[32;1m~>\e[0m All done."
 gum confirm "It is recommended to reboot the system to apply all the changes. Reboot now?" && sudo shutdown -r now
