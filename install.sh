@@ -3,7 +3,6 @@
 # Pre-declare some variables...
 DEVSTRAP_TMP=/tmp
 DEVSTRAP_PATH="${DEVSTRAP_TMP}/devstrap"
-DEVSTRAP_GUM="${DEVSTRAP_GUM:-${DEVSTRAP_GUM}/gum}"
 
 clear; echo -e "\n\e[36;1mdevstrap\e[0m\n"
 

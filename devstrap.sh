@@ -68,7 +68,7 @@ if ${DEVSTRAP_GUM} confirm "This script will bootstrap a freshly installed machi
     fi
 fi
 
-echo "=> Removing artifacts..."
+echo -e "\e[33;1m~>\e[0m Removing artifacts..."
 rm -f ${DEVSTRAP_GUM}
 rm -fr ${DEVSTRAP_PATH}
 
@@ -80,4 +80,4 @@ unset DEVSTRAP_GUM
 unset DEVSTRAP_PATH
 unset DEVSTRAP_TMP
 
-echo "=> All done!"
+echo -e "\e[32;1m~>\e[0m All done."
