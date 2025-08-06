@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
+
 # LibreOffice
 # https://libreoffice.org/
-
-echo "=> Intalling LibreOffice..."
+echo "=> Installing LibreOffice..."
 yay -S --noconfirm --needed libreoffice

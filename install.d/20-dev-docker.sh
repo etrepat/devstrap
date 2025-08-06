@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
+
 # Docker
-
 echo "=> Installing Docker Engine..."
-
 yay -S --noconfirm --needed docker docker-compose docker-buildx
 
 sudo mkdir -p /etc/docker
@@ -24,5 +23,7 @@ sudo systemctl enable docker
 
 sudo systemctl daemon-reload
 
+# lazydocker - simple terminal UI for docker commands
+# https://github.com/jesseduffield/lazydocker
 echo "=> Installing 'lazydocker'..."
 yay -S --noconfirm lazydocker-bin

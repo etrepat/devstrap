@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Add some extra GNOME tools & utilities for a better experience
 
 # Skip if not in gnome or mandated by user...
 [[ "${DEVSTRAP_GNOME_CUSTOMIZE}" != "y" ]] && return 0
 
+# Add some extra GNOME tools & utilities for a better experience
 echo "=> Add useful GNOME tools & utilities..."
 
 # Remove un-needed packages

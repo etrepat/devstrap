@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Spotify
 
+# Spotify
 echo "=> Installing Spotify for Linux..."
 yay -S --noconfirm --needed spotify

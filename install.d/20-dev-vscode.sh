@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Visual Studio Code
 
+# Visual Studio Code
 echo "=> Install Visual Studio Code..."
 yay -S --noconfirm --needed visual-studio-code-bin
 

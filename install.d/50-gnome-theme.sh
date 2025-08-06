@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
-# Set the gnome theme preferences
 
 # Skip if not in gnome or mandated by user...
 [[ "${DEVSTRAP_GNOME_CUSTOMIZE}" != "y" ]] && return 0
 
-THEME_WALLPAPER="abstract-purple-blue.jpg"
-
+# Set the gnome theme preferences
 echo "=> Setting GNOME fonts..."
 
 # Set Noto Sans as the default font
@@ -26,6 +24,7 @@ yay -S --noconfirm papirus-icon-theme
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
 
 # Wallpaper
+THEME_WALLPAPER="abstract-purple-blue.jpg"
 mkdir -p ~/.local/share/wallpapers
 
 if [ ! -f "~/.local/share/wallpapers/${THEME_WALLPAPER}" ]; then

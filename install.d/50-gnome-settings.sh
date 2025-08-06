@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Set the gnome settings, extensions & hotkeys
 
 # Skip if not in gnome or mandated by user...
 [[ "${DEVSTRAP_GNOME_CUSTOMIZE}" != "y" ]] && return 0
 
+# Set the gnome settings, extensions & hotkeys
 echo "=> Configure GNOME settings & installing extensions..."
 
 yay -S --noconfirm --needed python-pipx

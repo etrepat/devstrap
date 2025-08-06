@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Use starship.rs for prompt support
 
+# Use starship.rs for prompt support
 echo "=> Installing Starship.rs..."
 
 if ! command -v starship &> /dev/null; then

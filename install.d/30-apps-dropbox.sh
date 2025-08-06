@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Dropbox
 
+# Dropbox
 echo "=> Installing Dropbox..."
 yay -S --noconfirm --needed gpgme python-gpgme dropbox
 # gtk-launch dropbox.desktop

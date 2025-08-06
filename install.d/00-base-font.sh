@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Download & install fonts
 
+# Download & install fonts
 echo "=> Installing fonts..."
 yay -S --noconfirm --needed otf-font-awesome noto-fonts noto-fonts-emoji noto-fonts-extra
 

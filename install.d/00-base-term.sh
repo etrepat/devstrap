@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Install a better term - Ghostty
 
+# Install a better term - Ghostty
 echo "=> Installing terminal application (ghostty)..."
 yay -S --noconfirm --needed ghostty
 
