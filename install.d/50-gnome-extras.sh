@@ -7,7 +7,9 @@
 echo "=> Add useful GNOME tools & utilities..."
 
 # Remove un-needed packages
-yay -Rns --noconfirm epiphany gnome-console gnome-tour
+yay -Qq epiphany && yay -Rns --noconfirm epiphany
+yay -Qq gnome-tour && yay -Rns --noconfirm gnome-tour
+yay -Qq gnome-console && yay -Rns --noconfirm gnome-console
 
 # Install some GNOME utilities
 yay -S --noconfirm --needed authenticator collision curtail fragments impression pika-backup

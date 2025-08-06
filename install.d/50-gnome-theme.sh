@@ -22,7 +22,7 @@ gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface accent-color 'purple'
 
 # Icon theme
-yay -S papirus-icon-theme
+yay -S --noconfirm papirus-icon-theme
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
 
 # Wallpaper
