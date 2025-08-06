@@ -14,3 +14,5 @@ ARCH=$(uname -m)
 
 # Check for Archlinux
 [ "$ID" != "arch" ] && error_exit "Unsupported OS: $ID $VERSION_ID."
+
+echo -e "\e[33;1m~>\e[0m Distribution checks passed..."

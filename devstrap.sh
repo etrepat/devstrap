@@ -81,5 +81,5 @@ yay -Rns --noconfirm $(yay -Qdtq)
 yay -Sc --noconfirm
 yay -Syu --noconfirm
 
-echo -e "\e[33;1m~>\e[0m All done."
+echo -e "\e[32;1m~>\e[0m All done."
 gum confirm "It is recommended to reboot the system to apply all the changes. Reboot now?" && sudo shutdown -r now
