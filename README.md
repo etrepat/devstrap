@@ -19,6 +19,13 @@ with a dedicated installation script. **We strongly recommend reviewing the scri
 
 ## 🚀 Installation
 
+After base os install of any of the supported distributions, you can proceed with the installation of DevStrap by opening
+a terminal and executing:
+
+```bash
+curl -sSf 'https://raw.githubusercontent.com/etrepat/devstrap/main/install.sh' | bash
+```
+
 ### Arch Linux (x64, GNOME Desktop)
 
 1. Download the latest [Arch Linux ISO](https://archlinux.org/download/) and boot into it.
