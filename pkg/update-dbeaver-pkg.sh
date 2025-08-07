@@ -6,6 +6,10 @@ PKGBUILD="PKGBUILD"
 
 cd dbeaver
 
+# Current version
+CURRENT_VER=$(grep '^pkgver=' "$PKGBUILD" | cut -d= -f2)
+echo "Current version: $CURRENT_VER"
+
 # Get latest version from GitHub
 echo "Fetching latest dbeaver release..."
 LATEST_VER=$(curl -sI https://github.com/dbeaver/dbeaver/releases/latest \
@@ -13,6 +17,13 @@ LATEST_VER=$(curl -sI https://github.com/dbeaver/dbeaver/releases/latest \
     | sed -E 's#.*/tag/v?##; s#\r##')
 
 echo "Latest version: $LATEST_VER"
+
+# Check if already up to date
+if [[ "$CURRENT_VER" == "$LATEST_VER" ]]; then
+    echo "✅ Already up to date. Nothing to do."
+    cd -
+    exit 0
+fi
 
 # Update PKGBUILD pkgver and source URL
 echo "Updating PKGBUILD..."
@@ -33,4 +44,3 @@ rm -f "dbeaver-ce-${LATEST_VER}-linux.gtk.x86_64.tar.gz"
 
 cd -
 echo "✅ Updated to $LATEST_VER. All done!"
-
