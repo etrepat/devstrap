@@ -9,7 +9,6 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 
 # Utilities
-alias bat="batcat"
 alias lzg="lazygit"
 alias lzd="lazydocker"
 alias icat="chafa"
