@@ -5,6 +5,7 @@
 echo "=> Installing mise..."
 if ! command -v mise &> /dev/null; then
     yay -S --noconfirm --needed mise
+    mise use -g usage
 else
     echo "=> Seems to be already present, skipping..."
 fi
