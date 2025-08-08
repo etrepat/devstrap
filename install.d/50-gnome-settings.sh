@@ -45,6 +45,9 @@ gsettings set org.gnome.desktop.input-sources show-all-sources true
 # Make writing a '~' character not require pressing space (for es ISO keyboards)
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'es+deadtilde')]"
 
+# Nautilus default sort order
+gsettings set org.gnome.nautilus.preferences default-sort-order 'type'
+
 # Set favorite apps
 gsettings set org.gnome.shell favorite-apps "['com.mitchellh.ghostty.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.Nautilus.desktop', 'firefox.desktop', 'spotify.desktop', 'mpv.desktop', 'code.desktop', 'localsend.desktop', 'org.keepassxc.KeePassXC.desktop', 'org.gnome.Settings.desktop']"
 
