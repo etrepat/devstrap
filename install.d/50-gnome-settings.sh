@@ -47,6 +47,9 @@ gsettings set org.gnome.desktop.input-sources show-all-sources true
 # Make writing a '~' character not require pressing space (for es ISO keyboards)
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'es+deadtilde')]"
 
+# Make nautilus sort by type first by default
+gsettings set org.gnome.nautilus.preferences default-sort-order 'type'
+
 # Set favorite apps
 gsettings set org.gnome.shell favorite-apps "['com.mitchellh.ghostty.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.Nautilus.desktop', 'firefox.desktop', 'spotify.desktop', 'mpv.desktop', 'code.desktop', 'localsend.desktop', 'org.keepassxc.KeePassXC.desktop', 'org.gnome.Settings.desktop']"
 
@@ -93,7 +96,7 @@ gsettings set org.gnome.shell.extensions.space-bar.shortcuts enable-move-to-work
 gsettings set org.gnome.shell.extensions.space-bar.shortcuts open-menu "@as []"
 
 # Configure AlphabeticalAppGrid
-gsettings set org.gnome.shell.extensions.alphabetical-app-grid folder-order-position 'end'
+gsettings set org.gnome.shell.extensions.alphabetical-app-grid folder-order-position 'start'
 
 # Keybindings
 
