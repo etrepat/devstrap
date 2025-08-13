@@ -3,6 +3,9 @@
 # Skip if not in gnome or mandated by user...
 [[ "${DEVSTRAP_GNOME_CUSTOMIZE}" != "y" ]] && return 0
 
+# Install GNOME themes extra package & improved icons theme
+yay -S --noconfirm gnome-themes-extra papirus-icon-theme
+
 # Set the gnome theme preferences
 echo "=> Setting GNOME fonts..."
 
@@ -20,7 +23,6 @@ gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
 gsettings set org.gnome.desktop.interface accent-color 'purple'
 
 # Icon theme
-yay -S --noconfirm papirus-icon-theme
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
 
 # Wallpaper
