@@ -1,11 +1,8 @@
 #!/usr/bin/env bash
 
 # DBeaver Community - Free Universal Database Tool
-# We install a custom-made aur package (pkgbuild) so that it can be installed
-# self-contained, with its own JDK.
+# We install a custom-made aur package so that it can be self-contained with its own JRE
+# see: https://aur.archlinux.org/packages/dbeaver-ce-jre-bin
 
 echo "=> Installing DBeaver..."
-
-cd ${DEVSTRAP_PATH}/pkg/dbeaver
-makepkg -si --noconfirm
-cd -
+yay -S dbeaver-ce-jre-bin
