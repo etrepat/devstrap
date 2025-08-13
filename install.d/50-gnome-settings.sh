@@ -98,6 +98,9 @@ gsettings set org.gnome.shell.extensions.alphabetical-app-grid folder-order-posi
 
 # Keybindings
 
+# Change close to Super+W
+gsettings set org.gnome.desktop.wm.keybindings close "['<Super>w']"
+
 # Open default browser
 gsettings set org.gnome.settings-daemon.plugins.media-keys www "['<Super>b']"
 
