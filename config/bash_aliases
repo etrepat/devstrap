@@ -13,10 +13,6 @@ alias lzg="lazygit"
 alias lzd="lazydocker"
 alias icat="chafa"
 
-# Clipboard
-alias pbcopy="xclip -selection cliboard"
-alias pbpaste="xclip -selection clipboard -o"
-
 # Git
 alias g="git"
 alias gcm="git commit -m"
