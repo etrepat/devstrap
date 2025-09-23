@@ -93,3 +93,8 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
 if command -v starship &> /dev/null; then
     eval "$(starship init bash)"
 fi
+
+# zoxide
+if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init bash)"
+fi
