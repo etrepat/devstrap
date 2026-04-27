@@ -9,18 +9,38 @@ sudo -K && sudo -v
 # Sudo keep-alive
 (while true; do sudo -nv; sleep 1m; done) &
 export DEVSTRAP_SUDO_KEEPALIVE=$!
-trap 'kill $DEVSTRAP_SUDO_KEEPALIVE' INT TERM EXIT ERR
 
 # Setup
 export DEVSTRAP_TMP="${DEVSTRAP_TMP:-/tmp}"
 export DEVSTRAP_PATH="${DEVSTRAP_PATH:-${DEVSTRAP_TMP}/devstrap}"
 
 # Inform on if something failed
+restore_gnome_session_settings() {
+    if [[ "${DEVSTRAP_USING_GNOME:-false}" != "true" ]]; then
+        return 0
+    fi
+
+    if [[ -n "${DEVSTRAP_GNOME_LOCK_ENABLED:-}" ]]; then
+        gsettings set org.gnome.desktop.screensaver lock-enabled "${DEVSTRAP_GNOME_LOCK_ENABLED}" || true
+    fi
+
+    if [[ -n "${DEVSTRAP_GNOME_IDLE_DELAY:-}" ]]; then
+        gsettings set org.gnome.desktop.session idle-delay "${DEVSTRAP_GNOME_IDLE_DELAY}" || true
+    fi
+}
+
+cleanup_handler() {
+    kill "${DEVSTRAP_SUDO_KEEPALIVE}" 2>/dev/null || true
+    restore_gnome_session_settings
+}
+
 error_handler() {
     echo -e "\e[31;1mInstall failed\e[0m"
     echo -e "You may run the install scripts individually or retry by running: \e[33;1m$DEVSTRAP_PATH/install.sh\e[0m"
 }
+
 trap error_handler ERR
+trap cleanup_handler EXIT INT TERM
 
 # Perform os-specific checks here
 . ${DEVSTRAP_PATH}/os-checks.sh
@@ -50,6 +70,9 @@ DEVSTRAP_USING_GNOME=$([[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]] && echo true ||
 export DEVSTRAP_GNOME_CUSTOMIZE=$(${DEVSTRAP_USING_GNOME} && gum confirm "Apply GNOME theme & customizations (including extensions)?" && echo 'y')
 
 if [ "$DEVSTRAP_USING_GNOME" = true ]; then
+    export DEVSTRAP_GNOME_LOCK_ENABLED="$(gsettings get org.gnome.desktop.screensaver lock-enabled)"
+    export DEVSTRAP_GNOME_IDLE_DELAY="$(gsettings get org.gnome.desktop.session idle-delay)"
+
     # Ensure computer doesn't go to sleep or lock while installing
     gsettings set org.gnome.desktop.screensaver lock-enabled false
     gsettings set org.gnome.desktop.session idle-delay 0
@@ -65,8 +88,8 @@ done
 
 if [ "$DEVSTRAP_USING_GNOME" = true ]; then
     # Revert to normal idle and lock settings
-    gsettings set org.gnome.desktop.screensaver lock-enabled true
-    gsettings set org.gnome.desktop.session idle-delay 300
+    gsettings set org.gnome.desktop.screensaver lock-enabled "${DEVSTRAP_GNOME_LOCK_ENABLED:-false}"
+    gsettings set org.gnome.desktop.session idle-delay "${DEVSTRAP_GNOME_IDLE_DELAY:-300}"
 fi
 
 echo -e "\e[33;1m~>\e[0m Doing cleanup..."
@@ -81,6 +104,8 @@ yay -Syu --noconfirm
 echo -e "\e[33;1m~>\e[0m Removing artifacts..."
 rm -fr ${DEVSTRAP_PATH}
 
+unset DEVSTRAP_GENOME_LOCK_ENABLED
+unset DEVSTRAP_GNOME_IDLE_DELAY
 unset DEVSTRAP_GNOME_CUSTOMIZE
 unset DEVSTRAP_SELECTED_LANGS
 unset DEVSTRAP_USER_EMAIL
