@@ -26,15 +26,15 @@ gsettings set org.gnome.desktop.interface accent-color 'purple'
 gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
 
 # Wallpaper
-THEME_WALLPAPER="abstract-purple-blue.jpg"
+THEME_WALLPAPER="kanagawa-abstract-purple.jpg"
 mkdir -p ~/.local/share/wallpapers
 
-if [ ! -f "$HOME/.local/share/wallpapers/${THEME_WALLPAPER}" ]; then
+if [ ! -f "${HOME}/.local/share/wallpapers/${THEME_WALLPAPER}" ]; then
     cp -f "${DEVSTRAP_PATH}/config/wallpaper/${THEME_WALLPAPER}" ~/.local/share/wallpapers/${THEME_WALLPAPER}
 fi
 
-gsettings set org.gnome.desktop.background picture-uri "${HOME}/.local/share/wallpapers/${THEME_WALLPAPER}"
-gsettings set org.gnome.desktop.background picture-uri-dark "${HOME}/.local/share/wallpapers/${THEME_WALLPAPER}"
+gsettings set org.gnome.desktop.background picture-uri "file://${HOME}/.local/share/wallpapers/${THEME_WALLPAPER}"
+gsettings set org.gnome.desktop.background picture-uri-dark "file://${HOME}/.local/share/wallpapers/${THEME_WALLPAPER}"
 gsettings set org.gnome.desktop.background picture-options 'zoom'
 
 # Avatar
