@@ -31,40 +31,52 @@ for req in ${DEVSTRAP_PATH}/requirements.d/*.sh; do . $req; done
 
 # Installation
 clear; echo -e "\n\e[36;1mdevstrap\e[0m\n"
-if gum confirm "This script will bootstrap a freshly installed machine w/several configuration choices. Proceed?"; then
-    # Identify user (for git config)
-    export DEVSTRAP_USERNAME=$(gum input --placeholder "Enter full name" --prompt "Name> ")
-    export DEVSTRAP_USER_EMAIL=$(gum input --placeholder "Enter email address" --prompt "Email> ")
-
-    # Ask the user to select which programming languages to install
-    DEVSTRAP_AVAILABLE_LANGS=("Elixir" "Go" "Java" "Node.js" "PHP" "Python" "Ruby" "Rust")
-    DEVSTRAP_DEFAULT_LANGS="Node.js","PHP"
-    export DEVSTRAP_SELECTED_LANGS=$(gum choose "${DEVSTRAP_AVAILABLE_LANGS[@]}" --no-limit --selected "${DEVSTRAP_DEFAULT_LANGS}" --height 10 --header "Please, select the programming languages to install")
-
-    # Ask the user it it wants to apply GNOME settings & customizations (if using gnome) ?
-    DEVSTRAP_USING_GNOME=$([[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]] && echo true || echo false)
-    export DEVSTRAP_GNOME_CUSTOMIZE=$(${DEVSTRAP_USING_GNOME} && gum confirm "Apply GNOME theme & customizations (including extensions)?" && echo 'y')
-
-    if [ "$DEVSTRAP_USING_GNOME" = true ]; then
-        # Ensure computer doesn't go to sleep or lock while installing
-        gsettings set org.gnome.desktop.screensaver lock-enabled false
-        gsettings set org.gnome.desktop.session idle-delay 0
-    fi
-
-    # Update & upgrade packages before installing anything
-    gum spin --title "Upgrading base system, this may take a while..." -- yay -Syu --noconfirm > /dev/null
-
-    # Run installers
-    for installer in ${DEVSTRAP_PATH}/install.d/*.sh; do
-        . $installer
-    done
-
-    if [ "$DEVSTRAP_USING_GNOME" = true ]; then
-        # Revert to normal idle and lock settings
-        gsettings set org.gnome.desktop.screensaver lock-enabled true
-        gsettings set org.gnome.desktop.session idle-delay 300
-    fi
+if ! gum confirm "This script will bootstrap a freshly installed machine w/several configuration choices. Proceed?"; then
+    echo -e "\e[33;1m~>\e[0m Installation cancelled."
+    exit 0
 fi
+
+# Identify user (for git config)
+export DEVSTRAP_USERNAME=$(gum input --placeholder "Enter full name" --prompt "Name> ")
+export DEVSTRAP_USER_EMAIL=$(gum input --placeholder "Enter email address" --prompt "Email> ")
+
+# Ask the user to select which programming languages to install
+DEVSTRAP_AVAILABLE_LANGS=("Elixir" "Go" "Java" "Node.js" "PHP" "Python" "Ruby" "Rust")
+DEVSTRAP_DEFAULT_LANGS="Node.js","PHP"
+export DEVSTRAP_SELECTED_LANGS=$(gum choose "${DEVSTRAP_AVAILABLE_LANGS[@]}" --no-limit --selected "${DEVSTRAP_DEFAULT_LANGS}" --height 10 --header "Please, select the programming languages to install")
+
+# Ask the user it it wants to apply GNOME settings & customizations (if using gnome) ?
+DEVSTRAP_USING_GNOME=$([[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]] && echo true || echo false)
+export DEVSTRAP_GNOME_CUSTOMIZE=$(${DEVSTRAP_USING_GNOME} && gum confirm "Apply GNOME theme & customizations (including extensions)?" && echo 'y')
+
+if [ "$DEVSTRAP_USING_GNOME" = true ]; then
+    # Ensure computer doesn't go to sleep or lock while installing
+    gsettings set org.gnome.desktop.screensaver lock-enabled false
+    gsettings set org.gnome.desktop.session idle-delay 0
+fi
+
+# Update & upgrade packages before installing anything
+gum spin --title "Upgrading base system, this may take a while..." -- yay -Syu --noconfirm > /dev/null
+
+# Run installers
+for installer in ${DEVSTRAP_PATH}/install.d/*.sh; do
+    . $installer
+done
+
+if [ "$DEVSTRAP_USING_GNOME" = true ]; then
+    # Revert to normal idle and lock settings
+    gsettings set org.gnome.desktop.screensaver lock-enabled true
+    gsettings set org.gnome.desktop.session idle-delay 300
+fi
+
+echo -e "\e[33;1m~>\e[0m Doing cleanup..."
+
+orphaned="$(yay -Qdtq || true)"
+if [[ -n "${orphaned}" ]]; then
+    yay -Rns --noconfirm ${orphaned}
+fi
+yay -Sc --noconfirm
+yay -Syu --noconfirm
 
 echo -e "\e[33;1m~>\e[0m Removing artifacts..."
 rm -fr ${DEVSTRAP_PATH}
@@ -75,11 +87,6 @@ unset DEVSTRAP_USER_EMAIL
 unset DEVSTRAP_USERNAME
 unset DEVSTRAP_PATH
 unset DEVSTRAP_TMP
-
-echo -e "\e[33;1m~>\e[0m Doing cleanup..."
-yay -Rns --noconfirm $(yay -Qdtq)
-yay -Sc --noconfirm
-yay -Syu --noconfirm
 
 echo -e "\e[32;1m~>\e[0m All done."
 gum confirm "It is recommended to reboot the system to apply all the changes. Reboot now?" && sudo shutdown -r now
