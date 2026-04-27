@@ -12,6 +12,7 @@ alias ....="cd ../../.."
 alias lzg="lazygit"
 alias lzd="lazydocker"
 alias icat="chafa"
+alias rgf="rg --files | fzf --preview 'bat --style=numbers --color=always {}'"
 
 # Git
 alias g="git"
