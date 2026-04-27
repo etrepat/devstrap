@@ -5,5 +5,5 @@
 echo "=> Installing pspg..."
 yay -S --noconfirm pspg
 
-[ -f "~/.psqlrc" ] && mv ~/.psqlrc ~/.psqlrc.bak
+[ -f "$HOME/.psqlrc" ] && mv ~/.psqlrc ~/.psqlrc.bak
 cp "${DEVSTRAP_PATH}/config/psqlrc" ~/.psqlrc

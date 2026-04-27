@@ -11,5 +11,5 @@ fi
 
 echo "=> Bootstraping Starship.rs config..."
 mkdir -p ~/.config
-[ -f "~/.config/starship.toml" ] && mv ~/.config/starship.toml ~/.config/starship.toml.bak
+[ -f "$HOME/.config/starship.toml" ] && mv ~/.config/starship.toml ~/.config/starship.toml.bak
 cp -f "${DEVSTRAP_PATH}/config/starship.toml" ~/.config/starship.toml

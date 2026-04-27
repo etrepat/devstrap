@@ -29,7 +29,7 @@ gsettings set org.gnome.desktop.interface icon-theme 'Papirus-Dark'
 THEME_WALLPAPER="abstract-purple-blue.jpg"
 mkdir -p ~/.local/share/wallpapers
 
-if [ ! -f "~/.local/share/wallpapers/${THEME_WALLPAPER}" ]; then
+if [ ! -f "$HOME/.local/share/wallpapers/${THEME_WALLPAPER}" ]; then
     cp -f "${DEVSTRAP_PATH}/config/wallpaper/${THEME_WALLPAPER}" ~/.local/share/wallpapers/${THEME_WALLPAPER}
 fi
 

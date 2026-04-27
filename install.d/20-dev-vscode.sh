@@ -6,7 +6,7 @@ yay -S --noconfirm --needed visual-studio-code-bin
 
 echo "=> Copying base config..."
 mkdir -p ~/.config/Code/User
-[ -f "~/.config/Code/User/settings.json" ] && mv ~/.config/Code/User/settings.json ~/.config/Code/User/settings.json.bak
+[ -f "$HOME/.config/Code/User/settings.json" ] && mv ~/.config/Code/User/settings.json ~/.config/Code/User/settings.json.bak
 cp -f "${DEVSTRAP_PATH}/config/vscode.json" ~/.config/Code/User/settings.json
 
 # Install default extension set

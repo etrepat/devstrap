@@ -2,7 +2,7 @@
 
 # Git config
 echo "=> Applying some git config..."
-[ -f "~/.gitconfig" ] && mv ~/.gitconfig ~/.gitconfig.bak
+[ -f "$HOME/.gitconfig" ] && mv ~/.gitconfig ~/.gitconfig.bak
 cp -f "${DEVSTRAP_PATH}/config/gitconfig" ~/.gitconfig
 
 # Set identification from install inputs
