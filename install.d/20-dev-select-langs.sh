@@ -35,7 +35,7 @@ if [[ -n "${DEVSTRAP_SELECTED_LANGS}" ]]; then
             # Install composer
             php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
             php composer-setup.php --quiet && sudo mv composer.phar /usr/local/bin/composer
-            rm -f composer.setup
+            rm -f composer-setup.php
 			;;
 		Python)
             echo "=> (mise) Installing latest Python..."
