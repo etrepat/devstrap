@@ -1,7 +1,7 @@
 # Filesystem
 alias ls="eza -lh --group-directories-first --icons"
 alias lt="eza --tree --level=2 --long --icons --git"
-alias ff="fzf --preview 'batcat --style=numbers --color=always {}'"
+alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 alias df="df -h"
 alias du="du -h --max-depth=1"
 alias ..="cd .."
