@@ -35,10 +35,10 @@ applies a number of opinionated configurations and installs a curated set of too
 
 ### Included by default
 
-* **Terminal emulators:** [kitty](https://sw.kovidgoyal.net/kitty/) or [ghostty](https://github.com/ghostty/ghostty)
+* **Terminal emulators:** [ghostty](https://github.com/ghostty/ghostty)
 * **Shell:** Bash with an opinionated custom configuration & [starship.rs](https://starship.rs/) prompt.
 * **Languages & build tools:** Ruby, Go, Java, PHP, Rust, and more
-* **Core utilities:** curl, git, xclip, imagemagick, etc.
+* **Core utilities:** curl, git, wl-clipboard, imagemagick, etc.
 * **Editor:** Visual Studio Code, preconfigured with a theme and a basic extension set
 * **Desktop apps:** Albert launcher, Dropbox, Flameshot, Google Chrome / Firefox, and others
 * **SSH setup:** Generates a public/private key pair if one doesn't already exist
