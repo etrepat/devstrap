@@ -7,7 +7,7 @@ error_exit() {
 
 # Check architecture (x86 only)
 ARCH=$(uname -m)
-[[ ! "$ARCH" =~ ^(x86_64|i686)$ ]] && error_exit "Unsupported architecture: $ARCH. Only x86_64/i686 are supported."
+[[ ! "$ARCH" =~ ^(x86_64)$ ]] && error_exit "Unsupported architecture: $ARCH. Only x86_64 is supported."
 
 [ ! -f /etc/os-release ] && error_exit "Unable to determine OS. /etc/os-release file not found !?"
 . /etc/os-release
