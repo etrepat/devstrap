@@ -20,6 +20,9 @@ git config --global alias.br branch
 git config --global alias.ci commit
 git config --global alias.st status
 
+echo "=> Installing 'git-delta'..."
+yay -S --needed --noconfirm git-delta
+
 # lazygit - simple terminal UI for git commands
 # https://github.com/jesseduffield/lazygit
 echo "=> Installing 'lazygit'..."

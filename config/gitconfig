@@ -1,3 +1,5 @@
+[core]
+    pager = delta
 [column]
     ui = auto
 [branch]
@@ -34,3 +36,9 @@
     updateRefs = true
 [merge]
     conflictstyle = zdiff3
+[interactive]
+    diffFilter = delta --color-only
+[delta]
+    navigate = true
+    line-numbers = true
+    side-by-side = false
