@@ -5,4 +5,4 @@
 # see: https://aur.archlinux.org/packages/dbeaver-ce-jre-bin
 
 echo "=> Installing DBeaver..."
-yay -S dbeaver-ce-jre-bin
+yay -S --noconfirm --needed dbeaver-ce-jre-bin
