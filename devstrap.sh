@@ -6,8 +6,8 @@ set -e
 # Reset sudo credentials & ask for password preemptively
 sudo -K && sudo -v
 
-# Sudo keep-alive
-(while true; do sudo -nv; sleep 1m; done) &
+# Sudo keep-alive (re-authenticate on expiry instead of dying)
+(while true; do sudo -n true 2>/dev/null; sleep 60; done) &
 export DEVSTRAP_SUDO_KEEPALIVE=$!
 
 # Setup
@@ -71,8 +71,8 @@ DEVSTRAP_USING_GNOME=$([[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]] && echo true ||
 export DEVSTRAP_GNOME_CUSTOMIZE=$(${DEVSTRAP_USING_GNOME} && gum confirm "Apply GNOME theme & customizations (including extensions)?" && echo 'y')
 
 if [ "$DEVSTRAP_USING_GNOME" = true ]; then
-    export DEVSTRAP_GNOME_LOCK_ENABLED="$(gsettings get org.gnome.desktop.screensaver lock-enabled)"
-    export DEVSTRAP_GNOME_IDLE_DELAY="$(gsettings get org.gnome.desktop.session idle-delay)"
+    export DEVSTRAP_GNOME_LOCK_ENABLED="$(gsettings get org.gnome.desktop.screensaver lock-enabled || true)"
+    export DEVSTRAP_GNOME_IDLE_DELAY="$(gsettings get org.gnome.desktop.session idle-delay || true)"
 
     # Ensure computer doesn't go to sleep or lock while installing
     gsettings set org.gnome.desktop.screensaver lock-enabled false
