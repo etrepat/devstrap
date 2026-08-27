@@ -12,4 +12,4 @@ yay -Qq gnome-tour && yay -Rns --noconfirm gnome-tour
 yay -Qq gnome-console && yay -Rns --noconfirm gnome-console
 
 # Install some GNOME utilities
-yay -S --noconfirm --needed authenticator collision curtail fragments impression pika-backup
+yay -S --noconfirm --needed authenticator collision curtail fragments gnome-tweaks impression pika-backup

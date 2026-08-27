@@ -3,7 +3,7 @@
 # Terminal utilities
 echo "=> Installing terminal utilities..."
 yay -Qq htop && yay -Rns --noconfirm htop
-yay -S --needed --noconfirm bat btop chafa eza fastfetch fd fzf jq ripgrep tldr wl-clipboard yq zoxide
+yay -S --needed --noconfirm bat btop chafa direnv eza fastfetch fd fzf jq ripgrep shellcheck shfmt tldr wl-clipboard yq zoxide
 
 # Set eza theme
 mkdir -p ~/.config/eza

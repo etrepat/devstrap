@@ -14,11 +14,7 @@ if [[ -n "${DEVSTRAP_USER_EMAIL//[[:space:]]/}" ]]; then
   git config --global user.email "$DEVSTRAP_USER_EMAIL"
 fi
 
-# Set common git aliases
-git config --global alias.co checkout
-git config --global alias.br branch
-git config --global alias.ci commit
-git config --global alias.st status
+# git aliases live in config/gitconfig ([alias] section)
 
 echo "=> Installing 'git-delta'..."
 yay -S --needed --noconfirm git-delta
@@ -27,3 +23,7 @@ yay -S --needed --noconfirm git-delta
 # https://github.com/jesseduffield/lazygit
 echo "=> Installing 'lazygit'..."
 yay -S --needed --noconfirm lazygit
+
+# GitHub & GitLab CLI
+echo "=> Installing 'gh' (GitHub CLI) & 'glab' (GitLab CLI)..."
+yay -S --needed --noconfirm github-cli glab
