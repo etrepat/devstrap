@@ -1,0 +1,27 @@
+{
+  "theme": {
+    "mode": "dark",
+    "dark": "Tokyo Night"
+  },
+  "buffer_font_family": "CaskaydiaCove Nerd Font",
+  "buffer_font_size": 14.0,
+  "ui_font_size": 14.0,
+  "cursor_shape": "block",
+  "tab_size": 4,
+  "soft_tabs": true,
+  "preferred_line_length": 120,
+  "wrap_guides": [
+    80,
+    120
+  ],
+  "format_on_save": "off",
+  "autosave": "off",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "auto_install_extensions": {
+    "dockerfile": true,
+    "tokyo-night": true
+  }
+}
