@@ -42,8 +42,15 @@ gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'es+deadtilde')]
 # Make nautilus sort by type first by default
 gsettings set org.gnome.nautilus.preferences default-sort-order 'type'
 
-# Set favorite apps
-gsettings set org.gnome.shell favorite-apps "['com.mitchellh.ghostty.desktop', 'org.gnome.Calendar.desktop', 'org.gnome.Nautilus.desktop', 'firefox.desktop', 'spotify.desktop', 'mpv.desktop', 'code.desktop', 'localsend.desktop', 'org.keepassxc.KeePassXC.desktop', 'org.gnome.Settings.desktop']"
+# Set favorite apps (editor entries depend on the editor(s) selected at install time)
+apps=('com.mitchellh.ghostty.desktop' 'org.gnome.Calendar.desktop' 'org.gnome.Nautilus.desktop' 'firefox.desktop' 'spotify.desktop' 'mpv.desktop')
+selected="${DEVSTRAP_SELECTED_EDITORS:-}"
+[[ -n "${selected}" && " ${selected} " == *" Visual Studio Code "* ]] && apps+=('code.desktop')
+[[ -n "${selected}" && " ${selected} " == *" Zed "* ]] && apps+=('dev.zed.Zed.desktop')
+apps+=('localsend.desktop' 'org.keepassxc.KeePassXC.desktop' 'org.gnome.Settings.desktop')
+favorite_apps="[$(printf "'%s'," "${apps[@]}")]"
+favorite_apps="${favorite_apps%,]}]"
+gsettings set org.gnome.shell favorite-apps "${favorite_apps}"
 
 # Configure Dock
 gsettings set org.gnome.shell.extensions.dash-to-dock autohide true
