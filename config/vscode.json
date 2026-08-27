@@ -1,7 +1,7 @@
 {
     "editor.fontFamily": "'IosevkaTerm Nerd Font', 'Droid Sans Mono', monospace",
     "editor.fontLigatures": true,
-    "editor.fontSize": 14,
+    "editor.fontSize": 16,
     "editor.cursorStyle": "block",
     "editor.rulers": [
         80,
@@ -15,9 +15,8 @@
     "search.useIgnoreFiles": false,
     "notebook.lineNumbers": "on",
     "git.suggestSmartCommit": false,
-    "workbench.colorTheme": "Tokyo Night",
-    "workbench.iconTheme": "vscode-icons",
+    "workbench.colorTheme": "Catppuccin Mocha",
+    "workbench.iconTheme": "catppuccin-mocha",
     "extensions.ignoreRecommendations": true,
-    "telemetry.telemetryLevel": "off",
-    "vsicons.dontShowNewVersionMessage": true
+    "telemetry.telemetryLevel": "off"
 }

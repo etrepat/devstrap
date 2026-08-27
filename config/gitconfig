@@ -36,9 +36,19 @@
     updateRefs = true
 [merge]
     conflictstyle = zdiff3
+[alias]
+    co = checkout
+    br = branch
+    ci = commit
+    st = status
 [interactive]
     diffFilter = delta --color-only
 [delta]
+    dark = true
+    syntax-theme = "Catppuccin Mocha"
+    colorMoved = default
     navigate = true
     line-numbers = true
     side-by-side = false
+    hyperlinks = true
+    hyperlinks-file-link-format = "vscode://file/{path}:{line}"

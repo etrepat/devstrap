@@ -1,11 +1,18 @@
 {
   "theme": {
-    "mode": "dark",
-    "dark": "Tokyo Night"
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Catppuccin Mocha"
+  },
+  "icon_theme": {
+    "mode": "light",
+    "light": "Catppuccin Mocha",
+    "dark": "Colored Zed Icons Theme Dark"
   },
   "buffer_font_family": "IosevkaTerm Nerd Font",
-  "buffer_font_size": 14.0,
-  "ui_font_size": 14.0,
+  "buffer_font_size": 16.0,
+  "buffer_line_height": "comfortable",
+  "ui_font_size": 15.0,
   "cursor_shape": "block",
   "tab_size": 4,
   "soft_tabs": true,
@@ -16,12 +23,34 @@
   ],
   "format_on_save": "off",
   "autosave": "off",
+  "diff_view_style": "unified",
+  "minimap": {
+    "show": "auto"
+  },
+  "search": {
+    "include_ignored": true
+  },
+  "project_panel": {
+    "dock": "left"
+  },
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "dock": "left"
+  },
+  "git_panel": {
+    "dock": "left"
+  },
+  "agent": {
+    "dock": "right"
+  },
   "telemetry": {
     "diagnostics": false,
     "metrics": false
   },
   "auto_install_extensions": {
     "dockerfile": true,
-    "tokyo-night": true
+    "catppuccin": true
   }
 }

@@ -1,6 +1,6 @@
 # Filesystem
-alias ls="eza -lh --group-directories-first --icons"
-alias lt="eza --tree --level=2 --long --icons --git"
+alias ls="eza -lh --group-directories-first --icons auto"
+alias lt="eza --tree --level=2 --long --icons auto --git"
 alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 alias df="df -h"
 alias du="du -h --max-depth=1"
@@ -9,9 +9,12 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 
 # Utilities
+#alias bat="batcat"
 alias lzg="lazygit"
 alias lzd="lazydocker"
 alias icat="chafa"
+alias zed="zeditor"
+alias vim="nvim"
 alias rgf="rg --files | fzf --preview 'bat --style=numbers --color=always {}'"
 
 # Git
