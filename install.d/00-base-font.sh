@@ -1,22 +1,5 @@
 #!/usr/bin/env bash
 
-# Download & install fonts
+# Install fonts from the Arch extra repos (more maintainable than manual downloads)
 echo "=> Installing fonts..."
-yay -S --noconfirm --needed otf-font-awesome noto-fonts noto-fonts-emoji noto-fonts-extra noto-fonts-cjk
-
-echo "=> Installing 'CaskaydiaCove Nerd Font'..."
-if ! $(fc-list | grep -i "CaskaydiaCove" > /dev/null); then
-    cd ${DEVSTRAP_TMP}
-
-    curl -fSLO 'https://github.com/ryanoasis/nerd-fonts/releases/latest/download/CascadiaCode.zip'
-    unzip CascadiaCode.zip -d CascadiaFont
-    mkdir -p ~/.local/share/fonts
-    cp CascadiaFont/*.ttf ~/.local/share/fonts
-    rm -fr CascadiaCode.zip CascadiaFont
-
-    cd -
-
-    fc-cache -r
-else
-    echo "=> Font already exists in the system... Skipping..."
-fi
+yay -S --noconfirm --needed otf-font-awesome noto-fonts noto-fonts-emoji noto-fonts-extra noto-fonts-cjk ttc-iosevka ttf-iosevkaterm-nerd

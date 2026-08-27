@@ -13,8 +13,8 @@ echo "=> Setting GNOME fonts..."
 gsettings set org.gnome.desktop.interface font-name 'Noto Sans 11'
 gsettings set org.gnome.desktop.interface document-font-name 'Noto Sans 11'
 
-# Set Cascadia Mono as the default monospace font
-gsettings set org.gnome.desktop.interface monospace-font-name 'CaskaydiaCove Nerd Font 11'
+# Set Iosevka Term Nerd Font as the default monospace font
+gsettings set org.gnome.desktop.interface monospace-font-name 'IosevkaTerm Nerd Font 11'
 
 echo "=> Setting GNOME theme..."
 
