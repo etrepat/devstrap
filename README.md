@@ -66,7 +66,9 @@ applies a number of opinionated configurations and installs a curated set of too
 * **Languages & build tools:** Ruby, Go, Java, PHP, Rust, and more
 * **Core utilities:** curl, git, wl-clipboard, imagemagick, etc.
 * **Editor:** pick at install time between [Visual Studio Code](https://code.visualstudio.com/), [Zed](https://zed.dev/) and [Neovim](https://neovim.io/). Each is preconfigured with a matching theme (Catppuccin Mocha), base tooling and language support for your selected languages.
-* **Desktop apps:** Albert launcher, Dropbox, Flameshot, Google Chrome / Firefox, and others
+* **Desktop apps:** Albert launcher, Dropbox, Flameshot, Firefox, GIMP, and others. On top of these, an optional
+  apps picker lets you choose extras grouped by category — **Dev** (Cursor, LM Studio), **Media** (Inkscape, OBS Studio)
+  and **Gaming** (Steam)
 * **SSH setup:** Generates a public/private key pair if one doesn't already exist
 
 🔍 For a complete list of installed packages and applied configurations, see the `install.d` directory.
