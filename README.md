@@ -39,7 +39,7 @@ applies a number of opinionated configurations and installs a curated set of too
 * **Shell:** Bash with an opinionated custom configuration & [starship.rs](https://starship.rs/) prompt.
 * **Languages & build tools:** Ruby, Go, Java, PHP, Rust, and more
 * **Core utilities:** curl, git, wl-clipboard, imagemagick, etc.
-* **Editor:** Visual Studio Code, preconfigured with a theme and a basic extension set
+* **Editor:** pick at install time between [Visual Studio Code](https://code.visualstudio.com/), [Zed](https://zed.dev/) and [Neovim](https://neovim.io/). Each is preconfigured with a matching theme (Tokyo Night), base tooling and language support for your selected languages.
 * **Desktop apps:** Albert launcher, Dropbox, Flameshot, Google Chrome / Firefox, and others
 * **SSH setup:** Generates a public/private key pair if one doesn't already exist
 
