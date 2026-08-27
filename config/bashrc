@@ -84,7 +84,7 @@ PATH=$(puniq $PATH)
 export PATH
 
 # Default editor
-export EDITOR="nvim"
+export EDITOR="vim"
 
 # SSH
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"

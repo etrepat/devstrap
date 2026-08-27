@@ -116,11 +116,23 @@ run_installers() {
     selection_key="$(printf '%s|%s|%s|%s' "${DEVSTRAP_SELECTED_LANGS}" "${DEVSTRAP_SELECTED_EDITORS}" \
         "${DEVSTRAP_SELECTED_OPTIONAL_APPS}" "${DEVSTRAP_GNOME_CUSTOMIZE}" | md5sum | cut -d' ' -f1)"
 
+    # The git step is additionally keyed by the user identity, so re-running with
+    # a different name/email re-applies the git config without forcing a full re-run.
+    step_key() {
+        local name="$1"
+        if [[ "${name}" == "10-utils-git.sh" ]]; then
+            printf '%s|%s|%s' "${selection_key}" "${DEVSTRAP_USERNAME}" "${DEVSTRAP_USER_EMAIL}" |
+                md5sum | cut -d' ' -f1
+        else
+            printf '%s' "${selection_key}"
+        fi
+    }
+
     local pending=()
     local installer name
     for installer in "${DEVSTRAP_PATH}"/install.d/*.sh; do
         name="$(basename "${installer}")"
-        if [[ -n "${DEVSTRAP_FORCE}" ]] || [[ ! -f "${state_dir}/${name}.${selection_key}.done" ]]; then
+        if [[ -n "${DEVSTRAP_FORCE}" ]] || [[ ! -f "${state_dir}/${name}.$(step_key "${name}").done" ]]; then
             pending+=("${name}")
         fi
     done
@@ -151,7 +163,7 @@ run_installers() {
         echo "  => ${name}"
         # shellcheck disable=SC1090
         if (. "${DEVSTRAP_PATH}/install.d/${name}") >"${log}" 2>&1; then
-            touch "${state_dir}/${name}.${selection_key}.done"
+            touch "${state_dir}/${name}.$(step_key "${name}").done"
             rm -f "${state_dir}/${name}.failed"
             echo "  [ok]   ${name}"
         else

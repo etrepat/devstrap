@@ -13,7 +13,7 @@ with a dedicated installation script. **We strongly recommend reviewing the scri
 * Manjaro (x64, GNOME desktop)
     → [View installation script](https://github.com/etrepat/devstrap/tree/manjaro/install.sh)
     → [Go to the `manjaro` branch](https://github.com/etrepat/devstrap/tree/manjaro)
-* Ubuntu 24.04 LTS (Jammy Jellyfish)
+* Ubuntu 24.04 LTS (Noble Numbat)
     → [View installation script](https://github.com/etrepat/devstrap/tree/ubuntu/install.sh)
     → [Go to the `ubuntu` branch](https://github.com/etrepat/devstrap/tree/ubuntu)
 

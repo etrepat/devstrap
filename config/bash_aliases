@@ -14,7 +14,9 @@ alias lzg="lazygit"
 alias lzd="lazydocker"
 alias icat="chafa"
 alias zed="zeditor"
-alias vim="nvim"
+# vim is the system default ($EDITOR); if Neovim is installed you can uncomment
+# this to use it from the terminal for convenience.
+# alias vim="nvim"
 alias rgf="rg --files | fzf --preview 'bat --style=numbers --color=always {}'"
 
 # Git
