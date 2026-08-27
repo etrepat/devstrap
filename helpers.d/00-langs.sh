@@ -12,3 +12,8 @@ devstrap_prompt_langs() {
             --header "Please, select the programming languages to install")
     fi
 }
+
+devstrap_lang_selected() {
+    local lang="$1"
+    [[ -n "${DEVSTRAP_SELECTED_LANGS}" && " ${DEVSTRAP_SELECTED_LANGS} " == *" ${lang} "* ]]
+}

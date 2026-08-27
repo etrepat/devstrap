@@ -66,6 +66,9 @@ export DEVSTRAP_USER_EMAIL=$(gum input --placeholder "Enter email address" --pro
 # Ask the user to select which programming languages to install
 devstrap_prompt_langs
 
+# Ask the user to select the editor(s) to install
+devstrap_prompt_editors
+
 # Ask the user it it wants to apply GNOME settings & customizations (if using gnome) ?
 DEVSTRAP_USING_GNOME=$([[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]] && echo true || echo false)
 export DEVSTRAP_GNOME_CUSTOMIZE=$(${DEVSTRAP_USING_GNOME} && gum confirm "Apply GNOME theme & customizations (including extensions)?" && echo 'y')
@@ -109,6 +112,7 @@ unset DEVSTRAP_GNOME_LOCK_ENABLED
 unset DEVSTRAP_GNOME_IDLE_DELAY
 unset DEVSTRAP_GNOME_CUSTOMIZE
 unset DEVSTRAP_SELECTED_LANGS
+unset DEVSTRAP_SELECTED_EDITORS
 unset DEVSTRAP_USER_EMAIL
 unset DEVSTRAP_USERNAME
 unset DEVSTRAP_PATH
