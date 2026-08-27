@@ -6,31 +6,42 @@
 # Set the gnome settings, extensions & hotkeys
 echo "=> Configure GNOME settings & installing extensions..."
 
-yay -S --noconfirm --needed python-pipx
-mkdir -p ~/.local/bin
-export PATH="$HOME/.local/bin:$PATH"
-pipx install gnome-extensions-cli --system-site-packages
+# Install extensions directly from extensions.gnome.org (no AUR / gext)
+ext_install() {
+    local uuid="$1"
+    local shell_version="$(gnome-shell --version | grep -oE '[0-9]+' | head -1)"
+    local pk
+    pk="$(curl -sLf "https://extensions.gnome.org/extension-info/?uuid=${uuid}&shell_version=${shell_version}" \
+        | jq -r --arg sv "${shell_version}" '.shell_version_map[$sv].pk // empty' || true)"
+    if [[ -z "${pk}" ]]; then
+        echo "  (skipping ${uuid}: no build for GNOME ${shell_version})"
+        return 0
+    fi
+    echo "  Installing ${uuid}..."
+    curl -sLf "https://extensions.gnome.org/download-extension/${uuid}.shell-extension.zip?version_tag=${pk}" \
+        -o "${DEVSTRAP_TMP}/${uuid}.zip"
+    gnome-extensions install --force "${DEVSTRAP_TMP}/${uuid}.zip"
+    gnome-extensions enable "${uuid}"
+    rm -f "${DEVSTRAP_TMP}/${uuid}.zip"
+}
 
 # Install extensions
-gext install appindicatorsupport@rgcjonas.gmail.com
-gext install dash-to-dock@micxgx.gmail.com
-gext install tactile@lundal.io
-gext install caffeine@patapon.info
-gext install Vitals@CoreCoding.com
-gext install blur-my-shell@aunetx
-gext install space-bar@luchrioh
-gext install AlphabeticalAppGrid@stuarthayhurst
+ext_install appindicatorsupport@rgcjonas.gmail.com
+ext_install dash-to-dock@micxgx.gmail.com
+ext_install tactile@lundal.io
+ext_install caffeine@patapon.info
+ext_install Vitals@CoreCoding.com
+ext_install blur-my-shell@aunetx
+ext_install space-bar@luchrioh
+ext_install AlphabeticalAppGrid@stuarthayhurst
 
-# Compile gsettings schemas in order to be able to set them
-sudo cp ~/.local/share/gnome-shell/extensions/appindicatorsupport\@rgcjonas.gmail.com/schemas/org.gnome.shell.extensions.appindicator.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/dash-to-dock@micxgx.gmail.com/schemas/org.gnome.shell.extensions.dash-to-dock.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/tactile@lundal.io/schemas/org.gnome.shell.extensions.tactile.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/caffeine@patapon.info/schemas/org.gnome.shell.extensions.caffeine.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/Vitals@CoreCoding.com/schemas/org.gnome.shell.extensions.vitals.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/blur-my-shell\@aunetx/schemas/org.gnome.shell.extensions.blur-my-shell.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/space-bar\@luchrioh/schemas/org.gnome.shell.extensions.space-bar.gschema.xml /usr/share/glib-2.0/schemas/
-sudo cp ~/.local/share/gnome-shell/extensions/AlphabeticalAppGrid\@stuarthayhurst/schemas/org.gnome.shell.extensions.AlphabeticalAppGrid.gschema.xml /usr/share/glib-2.0/schemas/
-sudo glib-compile-schemas /usr/share/glib-2.0/schemas/
+# Compile gsettings schemas (user-local, no sudo required)
+mkdir -p ~/.local/share/glib-2.0/schemas
+for sdir in ~/.local/share/gnome-shell/extensions/*/schemas; do
+    [[ -d "${sdir}" ]] || continue
+    cp "${sdir}"/*.gschema.xml ~/.local/share/glib-2.0/schemas/ 2>/dev/null || true
+done
+glib-compile-schemas ~/.local/share/glib-2.0/schemas/
 
 # Set default terminal application
 gsettings set org.gnome.desktop.default-applications.terminal exec 'ghostty'
