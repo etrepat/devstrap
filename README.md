@@ -4,12 +4,17 @@ DevStrap is a bash script that rapidly sets up a fresh Arch (GNOME desktop) syst
 
 ## ✅ Compatibility
 
-DevStrap currently supports the following 64-bit Linux distributions. Each version is maintained in its own branch
-with a dedicated installation script. **We strongly recommend reviewing the script before executing it on your system.**
+DevStrap currently supports the following 64-bit Linux distributions. The active version is maintained on the `master`
+branch with a dedicated installation script. **We strongly recommend reviewing the script before executing it on your system.**
 
-* **Arch Linux (x64, GNOME desktop)**
-    → [View installation script](https://github.com/etrepat/devstrap/tree/archlinux/install.sh)
-    → [Go to the `archlinux` branch](https://github.com/etrepat/devstrap/tree/archlinux)
+* **Arch Linux (x64, GNOME desktop)** — actively maintained
+    → [View installation script](https://github.com/etrepat/devstrap/tree/master/install.sh)
+    → [Go to the `master` branch](https://github.com/etrepat/devstrap/tree/master)
+
+### ⚠️ Unmaintained legacy versions
+
+The following distributions are no longer maintained. The branches remain available for reference only.
+
 * Manjaro (x64, GNOME desktop)
     → [View installation script](https://github.com/etrepat/devstrap/tree/manjaro/install.sh)
     → [Go to the `manjaro` branch](https://github.com/etrepat/devstrap/tree/manjaro)
@@ -25,7 +30,7 @@ customize the installation as needed.
 3. Once the system is installed and running, open a terminal and execute:
 
 ```bash
-curl -sSf 'https://raw.githubusercontent.com/etrepat/devstrap/archlinux/install.sh' | bash
+curl -sSf 'https://raw.githubusercontent.com/etrepat/devstrap/master/install.sh' | bash
 ```
 
 ## 🛠 What It Does
