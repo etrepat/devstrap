@@ -24,7 +24,7 @@ if devstrap_lang_selected "Python"; then lsp_pkgs+=(pyright); fi
 if devstrap_lang_selected "Ruby"; then lsp_pkgs+=(solargraph); fi
 if devstrap_lang_selected "Rust"; then lsp_pkgs+=(rust-analyzer); fi
 
-if (( ${#lsp_pkgs[@]} > 0 )); then
+if ((${#lsp_pkgs[@]} > 0)); then
     echo "=> Bootstrapping plugins (lazy.nvim)..."
     nvim --headless "+Lazy! sync" +qa || echo "  (warning: lazy sync failed)"
     echo "=> Installing LSP servers via mason..."

@@ -7,7 +7,10 @@ set -e
 sudo -K && sudo -v
 
 # Sudo keep-alive (re-authenticate on expiry instead of dying)
-(while true; do sudo -n true 2>/dev/null; sleep 60; done) &
+(while true; do
+    sudo -n true 2>/dev/null
+    sleep 60
+done) &
 export DEVSTRAP_SUDO_KEEPALIVE=$!
 
 # Setup
@@ -43,25 +46,34 @@ trap error_handler ERR
 trap cleanup_handler EXIT INT TERM
 
 # Perform os-specific checks here
-. ${DEVSTRAP_PATH}/os-checks.sh
+. "${DEVSTRAP_PATH}/os-checks.sh"
 
 # Load shared helpers
-for helper in ${DEVSTRAP_PATH}/helpers.d/*.sh; do . $helper; done
+for helper in "${DEVSTRAP_PATH}"/helpers.d/*.sh; do
+    # shellcheck disable=SC1090
+    . "${helper}"
+done
 
 # Bootstrap required tooling
 echo -e "\e[33;1m~>\e[0m Initializing..."
-for req in ${DEVSTRAP_PATH}/requirements.d/*.sh; do . $req; done
+for req in "${DEVSTRAP_PATH}"/requirements.d/*.sh; do
+    # shellcheck disable=SC1090
+    . "${req}"
+done
 
 # Installation
-clear; echo -e "\n\e[36;1mdevstrap\e[0m\n"
+clear
+echo -e "\n\e[36;1mdevstrap\e[0m\n"
 if ! gum confirm "This script will bootstrap a freshly installed machine w/several configuration choices. Proceed?"; then
     echo -e "\e[33;1m~>\e[0m Installation cancelled."
     exit 0
 fi
 
 # Identify user (for git config)
-export DEVSTRAP_USERNAME=$(gum input --placeholder "Enter full name" --prompt "Name> ")
-export DEVSTRAP_USER_EMAIL=$(gum input --placeholder "Enter email address" --prompt "Email> ")
+DEVSTRAP_USERNAME=$(gum input --placeholder "Enter full name" --prompt "Name> ") || true
+export DEVSTRAP_USERNAME
+DEVSTRAP_USER_EMAIL=$(gum input --placeholder "Enter email address" --prompt "Email> ") || true
+export DEVSTRAP_USER_EMAIL
 
 # Ask the user to select which programming languages to install
 devstrap_prompt_langs
@@ -74,11 +86,14 @@ devstrap_prompt_optional_apps
 
 # Ask the user it it wants to apply GNOME settings & customizations (if using gnome) ?
 DEVSTRAP_USING_GNOME=$([[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]] && echo true || echo false)
-export DEVSTRAP_GNOME_CUSTOMIZE=$(${DEVSTRAP_USING_GNOME} && gum confirm "Apply GNOME theme & customizations (including extensions)?" && echo 'y')
+DEVSTRAP_GNOME_CUSTOMIZE=$(${DEVSTRAP_USING_GNOME} && gum confirm "Apply GNOME theme & customizations (including extensions)?" && echo 'y') || true
+export DEVSTRAP_GNOME_CUSTOMIZE
 
 if [ "$DEVSTRAP_USING_GNOME" = true ]; then
-    export DEVSTRAP_GNOME_LOCK_ENABLED="$(gsettings get org.gnome.desktop.screensaver lock-enabled || true)"
-    export DEVSTRAP_GNOME_IDLE_DELAY="$(gsettings get org.gnome.desktop.session idle-delay || true)"
+    DEVSTRAP_GNOME_LOCK_ENABLED="$(gsettings get org.gnome.desktop.screensaver lock-enabled || true)"
+    export DEVSTRAP_GNOME_LOCK_ENABLED
+    DEVSTRAP_GNOME_IDLE_DELAY="$(gsettings get org.gnome.desktop.session idle-delay || true)"
+    export DEVSTRAP_GNOME_IDLE_DELAY
 
     # Ensure computer doesn't go to sleep or lock while installing
     gsettings set org.gnome.desktop.screensaver lock-enabled false
@@ -86,7 +101,7 @@ if [ "$DEVSTRAP_USING_GNOME" = true ]; then
 fi
 
 # Update & upgrade packages before installing anything
-gum spin --title "Upgrading base system, this may take a while..." -- yay -Syu --noconfirm > /dev/null
+gum spin --title "Upgrading base system, this may take a while..." -- yay -Syu --noconfirm >/dev/null
 
 # Run installers — each isolated in its own subshell with a dedicated log, so one
 # failure doesn't abort the whole run. Completion state is tracked persistently
@@ -103,25 +118,28 @@ run_installers() {
 
     local pending=()
     local installer name
-    for installer in ${DEVSTRAP_PATH}/install.d/*.sh; do
+    for installer in "${DEVSTRAP_PATH}"/install.d/*.sh; do
         name="$(basename "${installer}")"
         if [[ -n "${DEVSTRAP_FORCE}" ]] || [[ ! -f "${state_dir}/${name}.${selection_key}.done" ]]; then
             pending+=("${name}")
         fi
     done
 
-    if (( ${#pending[@]} == 0 )); then
+    if ((${#pending[@]} == 0)); then
         echo "=> All installers already completed for these selections."
         return 0
     fi
 
     # Offer a subset picker when resuming after failures or when explicitly requested
     local chosen=()
-    if [[ -n "${DEVSTRAP_SELECT_STEPS}" ]] || compgen -G "${state_dir}/*.failed" > /dev/null; then
-        chosen=($(gum choose "${pending[@]}" --no-limit \
-            --selected "$(IFS=,; echo "${pending[*]}")" --height 10 \
-            --header "Installers to run (completed steps are excluded)"))
-        (( ${#chosen[@]} == 0 )) && chosen=("${pending[@]}")
+    if [[ -n "${DEVSTRAP_SELECT_STEPS}" ]] || compgen -G "${state_dir}/*.failed" >/dev/null; then
+        mapfile -t chosen < <(gum choose "${pending[@]}" --no-limit \
+            --selected "$(
+                IFS=,
+                echo "${pending[*]}"
+            )" --height 10 \
+            --header "Installers to run (completed steps are excluded)")
+        ((${#chosen[@]} == 0)) && chosen=("${pending[@]}")
     else
         chosen=("${pending[@]}")
     fi
@@ -131,7 +149,8 @@ run_installers() {
     for name in "${chosen[@]}"; do
         log="${DEVSTRAP_TMP}/logs/${name}.log"
         echo "  => ${name}"
-        if ( . "${DEVSTRAP_PATH}/install.d/${name}" ) >"${log}" 2>&1; then
+        # shellcheck disable=SC1090
+        if (. "${DEVSTRAP_PATH}/install.d/${name}") >"${log}" 2>&1; then
             touch "${state_dir}/${name}.${selection_key}.done"
             rm -f "${state_dir}/${name}.failed"
             echo "  [ok]   ${name}"
@@ -142,7 +161,7 @@ run_installers() {
         fi
     done
 
-    if (( ${#DEVSTRAP_FAILED[@]} > 0 )); then
+    if ((${#DEVSTRAP_FAILED[@]} > 0)); then
         echo -e "\e[31;1m${#DEVSTRAP_FAILED[@]} step(s) failed:\e[0m ${DEVSTRAP_FAILED[*]}"
         echo -e "\e[31;1mLogs: ${DEVSTRAP_TMP}/logs/\e[0m"
     fi
@@ -158,15 +177,16 @@ fi
 
 echo -e "\e[33;1m~>\e[0m Doing cleanup..."
 
-orphaned="$(yay -Qdtq || true)"
-if [[ -n "${orphaned}" ]]; then
-    yay -Rns --noconfirm ${orphaned}
+orphaned=()
+mapfile -t orphaned < <(yay -Qdtq || true)
+if ((${#orphaned[@]} > 0)); then
+    yay -Rns --noconfirm "${orphaned[@]}"
 fi
 yay -Sc --noconfirm
 yay -Syu --noconfirm
 
 echo -e "\e[33;1m~>\e[0m Removing artifacts..."
-rm -fr ${DEVSTRAP_PATH}
+rm -fr "${DEVSTRAP_PATH}"
 
 unset DEVSTRAP_GNOME_LOCK_ENABLED
 unset DEVSTRAP_GNOME_IDLE_DELAY

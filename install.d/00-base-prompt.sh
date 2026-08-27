@@ -3,7 +3,7 @@
 # Use starship.rs for prompt support
 echo "=> Installing Starship.rs..."
 
-if ! command -v starship &> /dev/null; then
+if ! command -v starship &>/dev/null; then
     yay -S --noconfirm --needed starship
 else
     echo "=> It seems that Starship.rs is already present in the system..."

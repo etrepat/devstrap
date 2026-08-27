@@ -24,4 +24,4 @@ fi
 if devstrap_lang_selected "Ruby"; then
     z="$(jq '.auto_install_extensions.ruby = true' <<<"${z}")"
 fi
-cat > ~/.config/zed/settings.json <<<"${z}"
+cat >~/.config/zed/settings.json <<<"${z}"

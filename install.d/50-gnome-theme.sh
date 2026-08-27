@@ -38,9 +38,9 @@ gsettings set org.gnome.desktop.background picture-uri-dark "file://${HOME}/.loc
 gsettings set org.gnome.desktop.background picture-options 'zoom'
 
 # Avatar
-sudo cp /usr/share/pixmaps/faces/mountain.jpg /var/lib/AccountsService/icons/$USER
-sudo chmod 644 /var/lib/AccountsService/icons/$USER
-sudo tee /var/lib/AccountsService/users/$USER > /dev/null <<EOF
+sudo cp /usr/share/pixmaps/faces/mountain.jpg "/var/lib/AccountsService/icons/${USER}"
+sudo chmod 644 "/var/lib/AccountsService/icons/${USER}"
+sudo tee "/var/lib/AccountsService/users/${USER}" >/dev/null <<EOF
 [User]
-Icon=/var/lib/AccountsService/icons/$USER
+Icon=/var/lib/AccountsService/icons/${USER}
 EOF

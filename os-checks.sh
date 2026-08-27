@@ -10,6 +10,7 @@ ARCH=$(uname -m)
 [[ ! "$ARCH" =~ ^(x86_64)$ ]] && error_exit "Unsupported architecture: $ARCH. Only x86_64 is supported."
 
 [ ! -f /etc/os-release ] && error_exit "Unable to determine OS. /etc/os-release file not found !?"
+# shellcheck disable=SC1091
 . /etc/os-release
 
 # Check for Archlinux
