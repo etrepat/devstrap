@@ -1,0 +1,169 @@
+{
+  "app_config": {
+    "audio_config": {
+      "audio": "pipewire"
+    },
+    "bluetooth_config": {
+      "enabled": true
+    },
+    "power_management_config": {
+      "power_management": "power-profiles-daemon"
+    },
+    "print_service_config": {
+      "enabled": true
+    },
+    "firewall_config": {
+      "firewall": "ufw"
+    },
+    "fonts_config": {
+      "fonts": [
+        "noto-fonts",
+        "noto-fonts-emoji",
+        "noto-fonts-cjk",
+        "ttf-liberation",
+        "ttf-dejavu"
+      ]
+    }
+  },
+  "archinstall-language": "English",
+  "bootloader_config": {
+    "bootloader": "Systemd-boot",
+    "uki": false,
+    "removable": true
+  },
+  "custom_commands": [
+    "runuser -u etrepat -- git clone --depth 1 https://github.com/etrepat/devstrap.git /home/etrepat/devstrap",
+    "install -d -o etrepat -g etrepat /home/etrepat/.config/autostart /home/etrepat/.config/devstrap /home/etrepat/.local/state/devstrap",
+    "install -o etrepat -g etrepat -m 0755 /home/etrepat/devstrap/archinstall/first-boot.sh /home/etrepat/.config/devstrap/first-boot.sh",
+    "runuser -u etrepat -- bash -c 'printf \"[Desktop Entry]\\nType=Application\\nName=DevStrap\\nComment=Bootstrap the development environment on first login\\nExec=/home/etrepat/.config/devstrap/first-boot.sh\\nTerminal=false\\nX-GNOME-Autostart-enabled=true\\n\" > /home/etrepat/.config/autostart/devstrap-first-boot.desktop'"
+  ],
+  "debug": false,
+  "disk_config": {
+    "config_type": "default_layout",
+    "device_modifications": [
+      {
+        "device": "/dev/sda",
+        "wipe": true,
+        "partitions": [
+          {
+            "btrfs": [],
+            "dev_path": null,
+            "flags": [
+              "boot"
+            ],
+            "fs_type": "fat32",
+            "size": {
+              "sector_size": {
+                "unit": "B",
+                "value": 512
+              },
+              "unit": "MiB",
+              "value": 512
+            },
+            "mount_options": [],
+            "mountpoint": "/boot",
+            "obj_id": "2c3fa2d5-2c79-4fab-86ec-22d0ea1543c0",
+            "start": {
+              "sector_size": {
+                "unit": "B",
+                "value": 512
+              },
+              "unit": "MiB",
+              "value": 1
+            },
+            "status": "create",
+            "type": "primary"
+          },
+          {
+            "btrfs": [
+              {
+                "name": "@",
+                "mountpoint": "/"
+              },
+              {
+                "name": "@home",
+                "mountpoint": "/home"
+              },
+              {
+                "name": "@log",
+                "mountpoint": "/var/log"
+              },
+              {
+                "name": "@pkg",
+                "mountpoint": "/var/cache/pacman/pkg"
+              }
+            ],
+            "dev_path": null,
+            "flags": [],
+            "fs_type": "btrfs",
+            "size": {
+              "sector_size": {
+                "unit": "B",
+                "value": 512
+              },
+              "unit": "GiB",
+              "value": 100
+            },
+            "mount_options": [
+              "compress=zstd"
+            ],
+            "mountpoint": null,
+            "obj_id": "btrfs",
+            "start": {
+              "sector_size": {
+                "unit": "B",
+                "value": 512
+              },
+              "unit": "MiB",
+              "value": 513
+            },
+            "status": "create",
+            "type": "primary"
+          }
+        ]
+      }
+    ],
+    "btrfs_options": {
+      "snapshot_config": {
+        "type": "Timeshift"
+      }
+    }
+  },
+  "hostname": "archy",
+  "kernels": [
+    "linux"
+  ],
+  "locale_config": {
+    "kb_layout": "es",
+    "sys_lang": "es_ES.UTF-8",
+    "sys_enc": "UTF-8"
+  },
+  "network_config": {
+    "type": "nm"
+  },
+  "ntp": true,
+  "offline": false,
+  "packages": [],
+  "pacman_config": {
+    "color": true,
+    "parallel_downloads": 5
+  },
+  "profile_config": {
+    "gfx_driver": "AMD / ATI (open-source)",
+    "greeter": "gdm",
+    "profile": {
+      "details": [
+        "GNOME"
+      ],
+      "main": "Desktop"
+    }
+  },
+  "script": "guided",
+  "silent": false,
+  "swap": {
+    "enabled": true,
+    "algorithm": "zstd"
+  },
+  "timezone": "Europe/Madrid",
+  "version": "4.4"
+}

@@ -13,6 +13,8 @@ branch with a dedicated installation script. **We strongly recommend reviewing t
 
 ## 🚀 Installation
 
+### Option 1 — classic post-install script (recommended)
+
 1. Download the latest [Arch Linux ISO](https://archlinux.org/download/) and boot into it.
 2. Run `archinstall`, selecting the **Desktop profile** and choosing **GNOME** as the desktop environment. Feel free to
 customize the installation as needed.
@@ -21,6 +23,36 @@ customize the installation as needed.
 ```bash
 curl -sSf 'https://raw.githubusercontent.com/etrepat/devstrap/master/install.sh' | bash
 ```
+
+### Option 2 — archinstall
+
+DevStrap ships a ready-made [archinstall](https://wiki.archlinux.org/title/Archinstall) configuration
+(`archinstall/user_configuration.json`) pre-filled with modern defaults: **GNOME**, **NetworkManager**, **btrfs** with
+`@`/`@home`/`@log`/`@pkg` subvolumes and **Timeshift** snapshots, systemd-boot, PipeWire, zram swap, and more. On the
+first login after install it automatically launches the devstrap bootstrap TUI.
+
+1. Download the latest [Arch Linux ISO](https://archlinux.org/download/) and boot into it.
+2. Fetch the configuration and the credentials template:
+
+   ```bash
+   curl -sSfO 'https://raw.githubusercontent.com/etrepat/devstrap/master/archinstall/user_configuration.json'
+   curl -sSfO 'https://raw.githubusercontent.com/etrepat/devstrap/master/archinstall/user_credentials.json'
+   ```
+
+3. Edit both files:
+   - `user_credentials.json` — set your `username` (must match the one used in `custom_commands`, default `etrepat`)
+     and replace the `CHANGE_ME` passwords.
+   - `user_configuration.json` — adjust the `disk_config` device (default `/dev/sda`) and root partition size to your
+     machine. The custom commands reference the username; keep it in sync with your credentials.
+4. Run the installer:
+
+   ```bash
+   archinstall --config user_configuration.json --creds user_credentials.json
+   ```
+
+5. Review the pre-filled answers in the archinstall menu (especially the disk layout) and confirm. When the system
+   boots and you log in for the first time, devstrap opens a terminal and runs itself automatically. Reboot at the end
+   when it's done.
 
 ## 🛠 What It Does
 
