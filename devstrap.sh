@@ -45,6 +45,9 @@ trap cleanup_handler EXIT INT TERM
 # Perform os-specific checks here
 . ${DEVSTRAP_PATH}/os-checks.sh
 
+# Load shared helpers
+for helper in ${DEVSTRAP_PATH}/helpers.d/*.sh; do . $helper; done
+
 # Bootstrap required tooling
 echo -e "\e[33;1m~>\e[0m Initializing..."
 for req in ${DEVSTRAP_PATH}/requirements.d/*.sh; do . $req; done
@@ -61,9 +64,7 @@ export DEVSTRAP_USERNAME=$(gum input --placeholder "Enter full name" --prompt "N
 export DEVSTRAP_USER_EMAIL=$(gum input --placeholder "Enter email address" --prompt "Email> ")
 
 # Ask the user to select which programming languages to install
-DEVSTRAP_AVAILABLE_LANGS=("Elixir" "Go" "Java" "Node.js" "PHP" "Python" "Ruby" "Rust")
-DEVSTRAP_DEFAULT_LANGS="Node.js","PHP"
-export DEVSTRAP_SELECTED_LANGS=$(gum choose "${DEVSTRAP_AVAILABLE_LANGS[@]}" --no-limit --selected "${DEVSTRAP_DEFAULT_LANGS}" --height 10 --header "Please, select the programming languages to install")
+devstrap_prompt_langs
 
 # Ask the user it it wants to apply GNOME settings & customizations (if using gnome) ?
 DEVSTRAP_USING_GNOME=$([[ "$XDG_CURRENT_DESKTOP" == *"GNOME"* ]] && echo true || echo false)

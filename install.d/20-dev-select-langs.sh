@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
 # Install selected programming languages
 
-if [[ ! -v DEVSTRAP_SELECTED_LANGS ]]; then
-    DEVSTRAP_AVAILABLE_LANGS=("Elixir" "Go" "Java" "Node.js" "PHP" "Python" "Ruby" "Rust")
-    DEVSTRAP_SELECTED_LANGS=$(gum choose "${DEVSTRAP_AVAILABLE_LANGS[@]}" --no-limit --height 10 --header "Please, select the programming languages to install")
-fi
+# Ensure languages have been selected (shared helper, single source of truth)
+devstrap_prompt_langs
 
 if [[ -n "${DEVSTRAP_SELECTED_LANGS}" ]]; then
     cd ${DEVSTRAP_TMP}
