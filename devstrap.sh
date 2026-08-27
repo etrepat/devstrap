@@ -104,7 +104,7 @@ yay -Syu --noconfirm
 echo -e "\e[33;1m~>\e[0m Removing artifacts..."
 rm -fr ${DEVSTRAP_PATH}
 
-unset DEVSTRAP_GENOME_LOCK_ENABLED
+unset DEVSTRAP_GNOME_LOCK_ENABLED
 unset DEVSTRAP_GNOME_IDLE_DELAY
 unset DEVSTRAP_GNOME_CUSTOMIZE
 unset DEVSTRAP_SELECTED_LANGS
