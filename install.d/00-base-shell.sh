@@ -16,4 +16,4 @@ cp "${DEVSTRAP_PATH}/config/inputrc" ~/.inputrc
 echo "=> Setting btop config (~/config/btop/btop.conf)..."
 mkdir -p ~/.config/btop/themes
 cp ${DEVSTRAP_PATH}/config/btop/btop.conf ~/.config/btop/btop.conf
-cp ${DEVSTRAP_PATH}/config/btop/tokyo-night.theme ~/.config/btop/themes/tokyo-night.theme
+cp ${DEVSTRAP_PATH}/config/btop/*.theme ~/.config/btop/themes/

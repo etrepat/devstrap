@@ -17,6 +17,7 @@ cp -f "${DEVSTRAP_PATH}/config/vscode.json" ~/.config/Code/User/settings.json
 # Install base extension set
 echo "=> Installing base extensions..."
 code --install-extension Catppuccin.catppuccin-vsc
+code --install-extension enkia.tokyo-night
 code --install-extension ms-azuretools.vscode-docker
 code --install-extension EditorConfig.EditorConfig
 code --install-extension eamodio.gitlens

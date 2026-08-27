@@ -51,6 +51,7 @@
   },
   "auto_install_extensions": {
     "dockerfile": true,
-    "catppuccin": true
+    "catppuccin": true,
+    "tokyo-night": true
   }
 }

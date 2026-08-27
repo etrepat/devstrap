@@ -5,6 +5,11 @@ return {
         priority = 1000,
     },
     {
+        "catppuccin/nvim",
+        lazy = false,
+        priority = 1000,
+    },
+    {
         "nvim-tree/nvim-web-devicons",
         lazy = true,
     },
