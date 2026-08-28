@@ -16,7 +16,7 @@ DEVSTRAP_DEFAULT_OPTIONAL_APPS=("Inkscape" "OBS Studio")
 devstrap_prompt_optional_apps() {
     if [[ ! -v DEVSTRAP_SELECTED_OPTIONAL_APPS ]]; then
         local -a selected=()
-        local i cat apps opts app pre choice
+        local i cat opts app pre choice
         for i in "${!DEVSTRAP_OPTIONAL_APP_CATEGORIES[@]}"; do
             cat="${DEVSTRAP_OPTIONAL_APP_CATEGORIES[i]}"
             read -ra opts <<<"${DEVSTRAP_OPTIONAL_APPS_BY_CATEGORY[i]}"
@@ -44,7 +44,8 @@ devstrap_prompt_optional_apps() {
         done
         # Newline-delimited so names containing spaces (e.g. "OBS Studio")
         # survive later word splitting intact
-        export DEVSTRAP_SELECTED_OPTIONAL_APPS="$(printf '%s\n' "${selected[@]}")"
+        DEVSTRAP_SELECTED_OPTIONAL_APPS="$(printf '%s\n' "${selected[@]}")"
+        export DEVSTRAP_SELECTED_OPTIONAL_APPS
     fi
 }
 
