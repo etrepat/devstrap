@@ -29,21 +29,28 @@ curl -sSf 'https://raw.githubusercontent.com/etrepat/devstrap/master/install.sh'
 DevStrap ships a ready-made [archinstall](https://wiki.archlinux.org/title/Archinstall) configuration
 (`archinstall/user_configuration.json`) pre-filled with modern defaults: **GNOME**, **NetworkManager**, **btrfs** with
 `@`/`@home`/`@log`/`@pkg` subvolumes and **Timeshift** snapshots, systemd-boot, PipeWire, zram swap, and more. On the
-first login after install it automatically launches the devstrap bootstrap TUI.
+first login after install it automatically launches the devstrap bootstrap TUI. A helper script
+(`archinstall/prepare-config.sh`) adapts the configuration to your machine — target disk and graphics driver are
+auto-detected and it prompts you for the account credentials.
 
 1. Download the latest [Arch Linux ISO](https://archlinux.org/download/) and boot into it.
-2. Fetch the configuration and the credentials template:
+2. Fetch the configuration, the credentials template and the helper:
 
    ```bash
    curl -sSfO 'https://raw.githubusercontent.com/etrepat/devstrap/master/archinstall/user_configuration.json'
    curl -sSfO 'https://raw.githubusercontent.com/etrepat/devstrap/master/archinstall/user_credentials.json'
+   curl -sSfO 'https://raw.githubusercontent.com/etrepat/devstrap/master/archinstall/prepare-config.sh'
    ```
 
-3. Edit both files:
-   - `user_credentials.json` — set your `username` (must match the one used in `custom_commands`, default `etrepat`)
-     and replace the `CHANGE_ME` passwords.
-   - `user_configuration.json` — adjust the `disk_config` device (default `/dev/sda`) and root partition size to your
-     machine. The custom commands reference the username; keep it in sync with your credentials.
+3. Run the helper to tailor the config to this machine:
+
+   ```bash
+   bash prepare-config.sh
+   ```
+
+   It detects the target disk (excluding the live USB/CD) and the GPU vendor, asks for the username and passwords, and
+   rewrites both JSON files accordingly — including keeping the `custom_commands` in sync with the chosen username. Use
+   `--help` for overrides (e.g. `--disk /dev/nvme0n1`).
 4. Run the installer:
 
    ```bash
